@@ -1,0 +1,920 @@
+<div fxLayout="row" fxLayoutAlign="center center" class="content">
+  <mat-card fxFlex.lt-md="100%" fxFlex="100%">
+    <mat-card-title fxLayout="column" fxLayoutAlign="center center" style="margin-top: 2%">
+      <div>
+        <b>{{ this.isauth ? title :'Inscription' }}</b>
+      </div>
+    </mat-card-title>
+    <mat-card-title fxLayout="row" fxLayoutAlign="center" fxLayoutGap="10px" style="margin-top: 2%" *ngIf="userID ===null ||isadmin">
+      <div (click)="changeform('initFormPersonnel','Personnel')">
+        <img src="../../../assets/images/client.jpg" alt="Card image cap" fxFlex="50%" />
+      </div>
+      <div (click)="changeform('initFormSociete','Société')">
+        <img src="../../../assets/images/pngtree-cartoon-employee-character-png-image_4644644.jpg"
+          alt="Card image cap" />
+      </div>
+      <div (click)="changeform('initFormclient','Client')">
+        <img src="../../../assets/images/pngtree-cartoon-employee-character-png-image_4644644.jpg"
+          alt="Card image cap" />
+      </div>
+    </mat-card-title>
+    <form  [formGroup]="formsociete" (ngSubmit)="registersociete()" *ngIf="Userfunction ==='Société'">
+      <mat-card-content>
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center" fxLayoutGap="20px">
+          <mat-form-field appearance="outline" fxFlex="40%">
+            <mat-label>Raison sociale</mat-label>
+            <input matInput placeholder="Raison sociale" formControlName="Rs" />
+            <mat-icon matSuffix [ngStyle]="{ color: 'green' }" *ngIf="formsociete.get('Rs').valid">done
+            </mat-icon>
+            <mat-icon matSuffix [ngStyle]="{ color: 'red' }" *ngIf="
+                formsociete.get('Rs').invalid && formsociete.get('Rs').touched
+              ">info</mat-icon>
+            <mat-error *ngIf="
+                formsociete.get('Rs').invalid && formsociete.get('Rs').touched
+              ">
+              Veuillez saisir la raison sociale
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" fxFlex="40%">
+            <mat-label>Adresse</mat-label>
+            <input matInput placeholder="Adresse" formControlName="Adresse" />
+            <mat-icon matSuffix [ngStyle]="{ color: 'green' }" *ngIf="formsociete.get('Adresse').valid">
+              done
+            </mat-icon>
+            <mat-icon matSuffix [ngStyle]="{ color: 'red' }" *ngIf="
+                formsociete.get('Adresse').invalid &&
+                formsociete.get('Adresse').touched
+              ">info
+            </mat-icon>
+            <mat-error *ngIf="
+                formsociete.get('Adresse').invalid &&
+                formsociete.get('Adresse').touched
+              ">
+              Veuillez saisir l'adresse
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center" fxLayoutGap="20px">
+          <mat-form-field appearance="outline" fxFlex="40%">
+            <mat-label>Tel</mat-label>
+            <input matInput placeholder="Téléphone" type="number" formControlName="Tel" />
+            <mat-icon matSuffix [ngStyle]="{ color: 'green' }" *ngIf="formsociete.get('Tel').valid">done
+            </mat-icon>
+            <mat-icon matSuffix [ngStyle]="{ color: 'red' }" *ngIf="
+                formsociete.get('Tel').invalid && formsociete.get('Tel').touched
+              ">info</mat-icon>
+            <mat-error *ngIf="
+                formsociete.get('Tel').hasError('required') &&
+                formsociete.get('Tel').touched
+              ">
+              Veuillez saisir le numéro de téléphone
+            </mat-error>
+            <mat-error *ngIf="
+                formsociete.get('Tel').hasError('pattern') &&
+                formsociete.get('Tel').touched
+              ">
+              Le numéro de téléphone doit contenir 8 chiffres
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" fxFlex="40%">
+            <mat-label>Fax</mat-label>
+            <input matInput type="number" placeholder="Fax" formControlName="Fax" />
+            <mat-icon matSuffix [ngStyle]="{ color: 'green' }" *ngIf="
+                formsociete.get('Fax').touched && formsociete.get('Fax').valid
+              ">done</mat-icon>
+            <mat-icon matSuffix [ngStyle]="{ color: 'red' }" *ngIf="
+                formsociete.get('Fax').invalid && formsociete.get('Fax').touched
+              ">info</mat-icon>
+
+            <mat-error *ngIf="
+                formsociete.get('Fax').hasError('pattern') &&
+                formsociete.get('Fax').touched
+              ">
+              Le numéro de téléphone doit contenir 8 chiffres
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center" fxLayoutGap="20px">
+          <mat-form-field appearance="outline" fxFlex="40%">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" formControlName="Email" />
+            <mat-icon matSuffix [ngStyle]="{ color: 'green' }" *ngIf="formsociete.get('Email').valid">
+              done
+            </mat-icon>
+            <mat-icon matSuffix [ngStyle]="{ color: 'red' }" *ngIf="
+                formsociete.get('Email').invalid &&
+                formsociete.get('Email').touched
+              ">info
+            </mat-icon>
+            <mat-error *ngIf="
+                formsociete.get('Email').hasError('required') &&
+                formsociete.get('Email').touched
+              ">
+              Veuillez saisir une adresse email
+            </mat-error>
+            <mat-error *ngIf="
+                formsociete.get('Email').hasError('pattern') &&
+                formsociete.get('Email').touched
+              ">
+              Veuillez saisir une adresse email valide
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" fxFlex="40%">
+            <mat-label>Site</mat-label>
+            <input matInput placeholder="Site" formControlName="Site" />
+            <mat-icon matSuffix [ngStyle]="{ color: 'green' }" *ngIf="
+                formsociete.get('Site').touched && formsociete.get('Site').valid
+              ">done</mat-icon>
+            <mat-icon matSuffix [ngStyle]="{ color: 'red' }" *ngIf="
+                formsociete.get('Site').invalid &&
+                formsociete.get('Site').touched
+              ">info</mat-icon>
+            <mat-error *ngIf="
+                formsociete.get('Site').hasError('pattern') &&
+                formsociete.get('Site').touched
+              ">
+              Veuillez saisir une url valide
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center" fxLayoutGap="20px">
+          <mat-form-field appearance="outline" fxFlex="40%">
+            <mat-label>Matricule fiscale</mat-label>
+            <input matInput placeholder="Matricule fiscale" formControlName="Matfiscale" />
+            <mat-icon matSuffix [ngStyle]="{ color: 'green' }" *ngIf="formsociete.get('Matfiscale').valid">
+              done</mat-icon>
+            <mat-icon matSuffix [ngStyle]="{ color: 'red' }" *ngIf="
+                formsociete.get('Matfiscale').invalid &&
+                formsociete.get('Matfiscale').touched
+              ">
+              info
+            </mat-icon>
+            <mat-error *ngIf="
+                formsociete.get('Matfiscale').hasError('required') &&
+                formsociete.get('Matfiscale').touched
+              ">
+              Veuillez saisir votre matricule fiscale
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline" fxFlex="40%">
+            <mat-label>Nom d'ulisateur</mat-label>
+            <input matInput placeholder="Nom d'ulisateur" formControlName="Login" />
+            <mat-icon matSuffix [ngStyle]="{ color: 'green' }" *ngIf="formsociete.get('Login').valid">
+              done
+            </mat-icon>
+            <mat-icon matSuffix [ngStyle]="{ color: 'red' }" *ngIf="
+                formsociete.get('Login').invalid &&
+                formsociete.get('Login').touched
+              ">info
+            </mat-icon>
+            <mat-error *ngIf="
+                formsociete.get('Login').hasError('required') &&
+                formsociete.get('Login').touched
+              ">
+              Veuillez saisir votre nom d'ulisateur
+            </mat-error>
+            <mat-error *ngIf="
+                formsociete.get('Login').hasError('minlength') &&
+                formsociete.get('Login').touched
+              ">
+              Veuillez saisir un nom d'ulisateur valide
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center" fxLayoutGap="20px">
+          <mat-form-field appearance="outline" fxFlex="40%">
+            <mat-label>Mot De Passe</mat-label>
+            <input matInput placeholder="Mot De Passe" type="password" formControlName="MotDePasse" />
+            <mat-icon matSuffix [ngStyle]="{ color: 'green' }" *ngIf="formsociete.get('MotDePasse').valid">
+              done</mat-icon>
+            <mat-icon matSuffix [ngStyle]="{ color: 'red' }" *ngIf="
+                formsociete.get('MotDePasse').invalid &&
+                formsociete.get('MotDePasse').touched
+              ">
+              info
+            </mat-icon>
+            <mat-error *ngIf="
+                formsociete.get('MotDePasse').hasError('required') &&
+                formsociete.get('MotDePasse').touched
+              ">
+              Veuillez saisir votre mot de passe
+            </mat-error>
+            <mat-error *ngIf="
+                formsociete.get('MotDePasse').hasError('minlength') &&
+                formsociete.get('MotDePasse').touched
+              ">
+              Le mot de passe doit contenir au moins 6 caractères
+            </mat-error>
+          </mat-form-field>
+          <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center" fxFlex="40%" fxLayoutGap="-15px">
+
+
+
+
+<div *ngIf="this.loginservice.isadmin">
+
+            <section class="example-section" *ngFor="let role of roles">
+              <mat-checkbox class="example-margin" #checkbox
+              [checked]=" userID === null
+                    ? role.Libelle === Userfunction
+                    : rolecheck(role)"
+
+                 (change)="changerole(role, checkbox.checked)">{{ role?.Libelle }}</mat-checkbox>
+            </section>
+</div>
+          </div>
+
+        </div>
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center center">
+          <div>
+            <button type="button" mat-raised-button color="warn" (click)="filePickersociete.click()"
+              *ngIf="imagePreviewsociete === null ">
+              <mat-icon>backup</mat-icon>
+              Choisir Logo
+            </button>
+            <button type="button" mat-raised-button color="warn" *ngIf="imagePreviewsociete !== null "
+              style="margin-bottom: 10px;" (click)="supprimerlogsociete()">
+              <mat-icon>remove</mat-icon>
+
+              Supprimer
+            </button>
+            <input type="file" #filePickersociete onclick="value=null" (change)="imagesociete($event)"
+              style="visibility: hidden;">
+          </div>
+<mat-card>
+          <div class="image-preview"
+            *ngIf="imagePreviewsociete !== '' && imagePreviewsociete && formsociete.get('Image').valid">
+
+
+            <img [src]="imagePreviewsociete" [alt]="formsociete.value.title">
+
+          </div>
+</mat-card>
+        </div>
+
+
+
+
+          <fieldset  [ngStyle.gt-sm]="{'margin-left':'9.5%'}" appearance="outline" *ngIf="isadmin">
+            <div><legend>Abonnement:</legend>
+</div>
+
+<div  fxLayout="column"  fxLayoutGap="20px">
+   <mat-form-field appearance="outline" fxFlex="100%">
+            <mat-label>Date début</mat-label>
+            <input matInput placeholder="Date début" type="date" formControlName='DateDebut'>
+            <mat-icon matSuffix [ngStyle]="{'color' :'green'}" *ngIf="formsociete.get('DateDebut').valid">
+                done
+            </mat-icon>
+            <mat-icon matSuffix [ngStyle]="{'color' :'red'}"
+                *ngIf="formsociete.get('DateDebut').invalid&& formsociete.get('DateDebut').touched">info
+            </mat-icon>
+            <mat-error
+                *ngIf="formsociete.get('DateDebut').invalid &&  formsociete.get('DateDebut').touched">
+                Veuillez saisir la date de début
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="40%">
+          <mat-label>Duree</mat-label>
+
+          <mat-select formControlName="Period" (selectionChange)='calculPrix($event)'>
+              <mat-option *ngFor='let durre of dureeAbonnement' [value]="durre.Valeur">{{durre.Libelle}}
+              </mat-option>
+          </mat-select>
+          <mat-icon matSuffix [ngStyle]="{'color' :'green'}" *ngIf="formsociete.get('Period').valid">done
+          </mat-icon>
+          <mat-icon matSuffix [ngStyle]="{'color' :'red'}"
+              *ngIf="formsociete.get('Period').invalid&&formsociete.get('Period').touched">info</mat-icon>
+          <mat-error *ngIf="formsociete.get('Period').invalid&&formsociete.get('Period').touched">
+              Veuillez saisir la période
+          </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline"  fxFlex="40%">
+        <mat-label>Montant</mat-label>
+        <input matInput type="number" formControlName='Montant' class="example-right-align">
+
+        <span matSuffix>DT&nbsp;</span>
+
+        <mat-icon matSuffix [ngStyle]="{'color' :'green'}" *ngIf="formsociete.get('Montant').valid">done
+        </mat-icon>
+        <mat-icon matSuffix [ngStyle]="{'color' :'red'}"
+            *ngIf="formsociete.get('Montant').invalid&&formsociete.get('Montant').touched">info
+        </mat-icon>
+        <mat-error *ngIf="formsociete.get('Montant').invalid&&formsociete.get('Montant').touched">
+            Veuillez saisir le montant
+        </mat-error>
+    </mat-form-field>
+</div>
+
+  </fieldset>
+
+  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="center" fxLayoutGap="20px">
+    <button mat-raised-button type="submit" color="primary" [disabled]="formsociete.invalid" >
+      <mat-icon>save</mat-icon> Enregistrer
+  </button>
+  <button mat-raised-button type="reset" color='accent' >
+      <mat-icon>clear</mat-icon> Réinitialiser
+  </button>
+</div>
+
+
+      </mat-card-content>
+    </form>
+    <form  [formGroup]="formclient" (ngSubmit)="registerclient()" *ngIf="Userfunction ==='Client'">
+      <mat-card-content>
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center" fxLayoutGap="20px">
+          <mat-form-field appearance="outline" fxFlex="40%">
+            <mat-label>Raison sociale</mat-label>
+            <input matInput placeholder="Raison sociale" formControlName='Rs'>
+            <mat-icon matSuffix [ngStyle]="{'color' :'green'}" *ngIf="formclient.get('Rs').valid">done
+            </mat-icon>
+            <mat-icon matSuffix [ngStyle]="{'color' :'red'}"
+                *ngIf="formclient.get('Rs').invalid&&formclient.get('Rs').touched">info</mat-icon>
+            <mat-error *ngIf="formclient.get('Rs').invalid&&formclient.get('Rs').touched">
+                Veuillez saisir la raison sociale
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="40%">
+          <mat-label>Adresse</mat-label>
+          <input matInput placeholder="Adresse" formControlName='Adresse'>
+          <mat-icon matSuffix [ngStyle]="{'color' :'green'}" *ngIf="formclient.get('Adresse').valid">
+              done
+          </mat-icon>
+          <mat-icon matSuffix [ngStyle]="{'color' :'red'}"
+              *ngIf="formclient.get('Adresse').invalid&&formclient.get('Adresse').touched">info
+          </mat-icon>
+          <mat-error *ngIf="formclient.get('Adresse').invalid&&formclient.get('Adresse').touched">
+              Veuillez saisir l'adresse
+          </mat-error>
+      </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center" fxLayoutGap="20px">
+          <mat-form-field appearance="outline" fxFlex='40%'>
+            <mat-label>Téléphone</mat-label>
+            <input matInput placeholder="Téléphone" type='number' formControlName='Tel'>
+            <mat-icon matSuffix [ngStyle]="{'color' :'green'}" *ngIf="formclient.get('Tel').valid">done
+            </mat-icon>
+            <mat-icon matSuffix [ngStyle]="{'color' :'red'}"
+                *ngIf="formclient.get('Tel').invalid&&formclient.get('Tel').touched">info</mat-icon>
+            <mat-error *ngIf="formclient.get('Tel').hasError('required')&&formclient.get('Tel').touched">
+                Veuillez saisir le numéro de téléphone
+            </mat-error>
+            <mat-error *ngIf="formclient.get('Tel').hasError('pattern')&&formclient.get('Tel').touched">
+                Le numéro de téléphone doit contenir 8 chiffres
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex='40%'>
+          <mat-label>Fax</mat-label>
+          <input matInput placeholder="Fax" type='number' formControlName='Fax'>
+          <mat-icon matSuffix [ngStyle]="{'color' :'green'}"
+              *ngIf="formclient.get('Fax').touched&&formclient.get('Fax').valid">done</mat-icon>
+          <mat-icon matSuffix [ngStyle]="{'color' :'red'}"
+              *ngIf="formclient.get('Fax').invalid &&formclient.get('Fax').touched">info</mat-icon>
+
+          <mat-error *ngIf="formclient.get('Fax').hasError('pattern')&&formclient.get('Fax').touched">
+              Le numéro de fax doit contenir 8 chiffres
+          </mat-error>
+      </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center" fxLayoutGap="20px">
+          <mat-form-field appearance="outline" fxFlex='40%'>
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Email" formControlName='Email'>
+            <mat-icon matSuffix [ngStyle]="{'color' :'green'}" *ngIf="formclient.get('Email').valid">
+                done
+            </mat-icon>
+            <mat-icon matSuffix [ngStyle]="{'color' :'red'}"
+                *ngIf="formclient.get('Email').invalid&&formclient.get('Email').touched">info
+            </mat-icon>
+            <mat-error
+                *ngIf="formclient.get('Email').hasError('required')&&formclient.get('Email').touched">
+                Veuillez saisir une adresse email
+            </mat-error>
+            <mat-error *ngIf="formclient.get('Email').hasError('pattern')&&formclient.get('Email').touched">
+                Veuillez saisir une adresse email valide
+            </mat-error>
+
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex='40%'>
+          <mat-label>Site</mat-label>
+          <input matInput placeholder="Site" formControlName='Site'>
+          <mat-icon matSuffix [ngStyle]="{'color' :'green'}"
+              *ngIf="formclient.get('Site').touched&&formclient.get('Site').valid">done</mat-icon>
+          <mat-icon matSuffix [ngStyle]="{'color' :'red'}"
+              *ngIf="formclient.get('Site').invalid&&formclient.get('Site').touched">info</mat-icon>
+          <mat-error *ngIf="formclient.get('Site').hasError('pattern')&&formclient.get('Site').touched">
+              Veuillez saisir une url valide
+          </mat-error>
+      </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center" fxLayoutGap="20px">
+          <mat-form-field appearance="outline" fxFlex='40%'>
+            <mat-label>Nom personne à contacter</mat-label>
+            <input matInput placeholder="Nom personne à contacter" formControlName='NomPC'>
+            <mat-icon matSuffix [ngStyle]="{'color' :'green'}" *ngIf="formclient.get('NomPC').valid">done
+            </mat-icon>
+            <mat-icon matSuffix [ngStyle]="{'color' :'red'}"
+                *ngIf="formclient.get('NomPC').invalid&&formclient.get('NomPC').touched">info</mat-icon>
+
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex='40%'>
+          <mat-label>Prénom personne à contacter</mat-label>
+          <input matInput placeholder="Prénom personne à contacter" formControlName='PrenomPC'>
+          <mat-icon matSuffix [ngStyle]="{'color' :'green'}" *ngIf="formclient.get('PrenomPC').valid">done
+          </mat-icon>
+          <mat-icon matSuffix [ngStyle]="{'color' :'red'}"
+              *ngIf="formclient.get('PrenomPC').invalid&&formclient.get('PrenomPC').touched">info
+          </mat-icon>
+
+      </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center" fxLayoutGap="20px">
+          <mat-form-field appearance="outline" fxFlex='40%'>
+            <mat-label>Telephone personne à contacter</mat-label>
+            <input matInput placeholder="Telephone personne à contacter" type='number'
+                formControlName='TelPersonnelContact'>
+            <mat-icon matSuffix [ngStyle]="{'color' :'green'}"
+                *ngIf="formclient.get('TelPersonnelContact').valid">done
+            </mat-icon>
+            <mat-icon matSuffix [ngStyle]="{'color' :'red'}"
+                *ngIf="formclient.get('TelPersonnelContact').invalid&&formclient.get('Tel').touched">info
+            </mat-icon>
+
+            <mat-error
+                *ngIf="formclient.get('TelPersonnelContact').hasError('pattern')&&formclient.get('TelPersonnelContact').touched">
+                Le numéro de téléphone doit contenir 8 chiffres
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex='40%'>
+          <mat-label>Fax personne à contacter</mat-label>
+          <input matInput placeholder="Fax personne à contacter" type='number' formControlName='FaxPersonnelContact'>
+          <mat-icon matSuffix [ngStyle]="{'color' :'green'}"
+              *ngIf="formclient.get('FaxPersonnelContact').touched&&formclient.get('FaxPersonnelContact').valid">
+              done</mat-icon>
+          <mat-icon matSuffix [ngStyle]="{'color' :'red'}"
+              *ngIf="formclient.get('FaxPersonnelContact').invalid &&formclient.get('FaxPersonnelContact').touched">
+              info</mat-icon>
+
+          <mat-error
+              *ngIf="formclient.get('FaxPersonnelContact').hasError('pattern')&&formclient.get('FaxPersonnelContact').touched">
+              Le numéro de téléphone doit contenir 8 chiffres
+          </mat-error>
+      </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center" fxLayoutGap="20px">
+          <mat-form-field appearance="outline" fxFlex='40%'>
+            <mat-label>Email personne à contacter</mat-label>
+            <input matInput placeholder="Email personne à contacter"
+                formControlName='AdresseEmailPersonnel'>
+            <mat-icon matSuffix [ngStyle]="{'color' :'green'}"
+                *ngIf="formclient.get('AdresseEmailPersonnel').valid">
+                done
+            </mat-icon>
+            <mat-icon matSuffix [ngStyle]="{'color' :'red'}"
+                *ngIf="formclient.get('AdresseEmailPersonnel').invalid&&formclient.get('AdresseEmailPersonnel').touched">
+                info
+            </mat-icon>
+
+            <mat-error
+                *ngIf="formclient.get('AdresseEmailPersonnel').hasError('pattern')&&formclient.get('AdresseEmailPersonnel').touched">
+                Veuillez saisir une adresse email valide
+            </mat-error>
+
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex='40%'>
+          <mat-label>Matricule fiscale</mat-label>
+          <input matInput placeholder="Matricule fiscale" formControlName='Matfiscale'>
+          <mat-icon matSuffix [ngStyle]="{'color' :'green'}" *ngIf="formclient.get('Matfiscale').valid">
+              done</mat-icon>
+          <mat-icon matSuffix [ngStyle]="{'color' :'red'}"
+              *ngIf="formclient.get('Matfiscale').invalid&&formclient.get('Matfiscale').touched">
+              info
+          </mat-icon>
+          <mat-error
+              *ngIf="formclient.get('Matfiscale').hasError('required')&&formclient.get('Matfiscale').touched">
+              Veuillez saisir votre matricule fiscale
+          </mat-error>
+      </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center" fxLayoutGap="20px">
+          <mat-form-field appearance="outline" fxFlex='40%'>
+            <mat-label>Registre de commerce </mat-label>
+            <input matInput placeholder="Registre de commerce" formControlName='Regfiscale'>
+            <mat-icon matSuffix [ngStyle]="{'color' :'green'}" *ngIf="formclient.get('Regfiscale').valid">
+                done</mat-icon>
+            <mat-icon matSuffix [ngStyle]="{'color' :'red'}"
+                *ngIf="formclient.get('Regfiscale').invalid&&formclient.get('Regfiscale').touched">
+                info
+            </mat-icon>
+
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex='40%'>
+          <mat-label>Société</mat-label>
+          <mat-select formControlName="SocieteID">
+              <mat-option *ngFor="let societe of societesList" [value]="societe?.ID">{{societe?.Rs}}
+              </mat-option>
+          </mat-select>
+          <mat-icon matSuffix [ngStyle]="{'color' :'green'}" *ngIf="formclient.get('SocieteID').valid">
+              done
+          </mat-icon>
+          <mat-icon matSuffix [ngStyle]="{'color' :'red'}"
+              *ngIf="formclient.get('SocieteID').invalid&&formclient.get('SocieteID').touched">info
+          </mat-icon>
+          <mat-error
+              *ngIf="formclient.get('SocieteID').hasError('required')&&formclient.get('SocieteID').touched">
+              Veuillez choisir la société
+          </mat-error>
+
+      </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center" fxLayoutGap="20px">
+          <mat-form-field appearance="outline" fxFlex='40%'>
+            <mat-label>Nom d'ulisateur</mat-label>
+            <input matInput placeholder="Nom d'ulisateur" formControlName='Login'>
+            <mat-icon matSuffix [ngStyle]="{'color' :'green'}" *ngIf="formclient.get('Login').valid">
+                done
+            </mat-icon>
+            <mat-icon matSuffix [ngStyle]="{'color' :'red'}"
+                *ngIf="formclient.get('Login').invalid&&formclient.get('Login').touched">info
+            </mat-icon>
+            <mat-error
+                *ngIf="formclient.get('Login').hasError('required')&&formclient.get('Login').touched">
+                Veuillez saisir votre nom d'ulisateur
+            </mat-error>
+            <mat-error
+                *ngIf="formclient.get('Login').hasError('minlength')&&formclient.get('Login').touched">
+                Veuillez saisir un nom d'ulisateur valide
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex='40%'>
+          <mat-label>Mot De Passe</mat-label>
+          <input matInput type="password" placeholder="Adresse" formControlName='MotDePasse'>
+          <mat-icon matSuffix [ngStyle]="{'color' :'green'}" *ngIf="formclient.get('MotDePasse').valid">
+              done</mat-icon>
+          <mat-icon matSuffix [ngStyle]="{'color' :'red'}"
+              *ngIf="formclient.get('MotDePasse').invalid&&formclient.get('MotDePasse').touched">
+              info
+          </mat-icon>
+          <mat-error
+              *ngIf="formclient.get('MotDePasse').hasError('required')&&formclient.get('MotDePasse').touched">
+              Veuillez saisir votre mot de passe
+          </mat-error>
+          <mat-error
+              *ngIf="formclient.get('MotDePasse').hasError('minlength')&&formclient.get('MotDePasse').touched">
+              Le mot de passe doit contenir au moins 6 caractères
+          </mat-error>
+      </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center" fxLayoutGap="30px">
+<div  *ngIf="this.loginservice.isadmin">
+<section class="example-section" *ngFor="let role of roles" >
+            <mat-checkbox class="example-margin" #checkbox [checked]="
+                userID === null
+                  ? role.Libelle === Userfunction
+                  : rolecheck(role)
+              " (change)="changerole(role, checkbox.checked)">{{ role?.Libelle }}</mat-checkbox>
+          </section>
+</div>
+
+
+
+<div>
+  <div>
+            <button type="button" mat-raised-button color='warn' *ngIf="imagePreviewclient === null "
+                (click)="filePickerclient.click()">              <mat-icon>backup</mat-icon>
+                Choisir votre photo
+            </button>
+            <button type="button" mat-raised-button color='warn' *ngIf="imagePreviewclient !== null "
+                style="margin-bottom: 10px;" (click)="supprimerimageclient()">              <mat-icon>remove</mat-icon>
+                Supprimer
+            </button>
+            <input type="file" #filePickerclient (change)="imageclient($event)" style="visibility: hidden;">
+
+        </div>
+        <div >
+          <mat-card>
+            <div class="image-preview"
+                *ngIf="imagePreviewclient !== '' && imagePreviewclient && formclient.get('Image').valid">
+
+
+                <img [src]="imagePreviewclient">
+
+            </div></mat-card>
+        </div>
+</div>
+
+        </div>
+        <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="center" fxLayoutGap="20px" style="margin-top: 2%;">
+          <button mat-raised-button type="submit" color="primary" [disabled]="formclient.invalid" >
+            <mat-icon>save</mat-icon> Enregistrer
+        </button>
+        <button mat-raised-button type="reset" color='accent' >
+            <mat-icon>clear</mat-icon> Réinitialiser
+        </button>
+      </div>
+            </mat-card-content>
+    </form>
+    <form [formGroup]="formpersonnel" (ngSubmit)="registerpersonnel()" *ngIf="Userfunction ==='Personnel'">
+<mat-card-content>
+  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="center" fxLayoutGap="20px">
+
+    <mat-form-field appearance="outline" fxFlex='40%'>
+      <mat-label>Cin</mat-label>
+      <input matInput placeholder="Cin" type='number' formControlName='Cin'>
+      <mat-icon matSuffix [ngStyle]="{'color' :'green'}" *ngIf="formpersonnel.get('Cin').valid">done
+      </mat-icon>
+      <mat-icon matSuffix [ngStyle]="{'color' :'red'}"
+          *ngIf="formpersonnel.get('Cin').invalid&& formpersonnel.get('Cin').touched">info</mat-icon>
+      <mat-error
+          *ngIf="formpersonnel.get('Cin').hasError('required')&& formpersonnel.get('Cin').touched">
+          Veuillez saisair le numero de la catre d'identité
+      </mat-error>
+      <mat-error
+          *ngIf="formpersonnel.get('Cin').hasError('pattern')&& formpersonnel.get('Cin').touched">
+          Le numero de la catre d'identité doit contenir 8 chiffres
+      </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline" fxFlex='40%'>
+    <mat-label>Nom</mat-label>
+    <input matInput placeholder="NomPC" formControlName='Nom'>
+    <mat-icon matSuffix [ngStyle]="{'color' :'green'}" *ngIf="formpersonnel.get('Nom').valid">done
+    </mat-icon>
+    <mat-icon matSuffix [ngStyle]="{'color' :'red'}"
+        *ngIf="formpersonnel.get('Nom').invalid&& formpersonnel.get('Nom').touched">info</mat-icon>
+    <mat-error *ngIf="formpersonnel.get('Nom').invalid&& formpersonnel.get('Nom').touched">
+        Veuillez saisair le nom
+    </mat-error>
+</mat-form-field>
+
+
+
+  </div>
+  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="center" fxLayoutGap="20px">
+    <mat-form-field appearance="outline" fxFlex='40%'>
+      <mat-label>Prénom</mat-label>
+      <input matInput placeholder="Prénom" formControlName='Prenom'>
+      <mat-icon matSuffix [ngStyle]="{'color' :'green'}" *ngIf="formpersonnel.get('Prenom').valid">
+          done
+      </mat-icon>
+      <mat-icon matSuffix [ngStyle]="{'color' :'red'}"
+          *ngIf="formpersonnel.get('Prenom').invalid&& formpersonnel.get('Prenom').touched">info
+      </mat-icon>
+      <mat-error *ngIf="formpersonnel.get('Prenom').invalid&& formpersonnel.get('Prenom').touched">
+          Veuillez saisair le Prénom
+      </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline" fxFlex='40%'>
+    <mat-label>Date de naissance</mat-label>
+    <input matInput type='date' placeholder="Date de naissance" formControlName='DateDeNaissance'>
+    <mat-icon matSuffix [ngStyle]="{'color' :'green'}"
+        *ngIf="formpersonnel.get('DateDeNaissance').valid">done
+    </mat-icon>
+    <mat-icon matSuffix [ngStyle]="{'color' :'red'}"
+        *ngIf="formpersonnel.get('DateDeNaissance').invalid&& formpersonnel.get('DateDeNaissance').touched">
+        info</mat-icon>
+    <mat-error
+        *ngIf="formpersonnel.get('DateDeNaissance').invalid&& formpersonnel.get('DateDeNaissance').touched">
+        Veuillez saisair la date de naissance
+    </mat-error>
+</mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="center" fxLayoutGap="20px">
+    <mat-form-field appearance="outline" fxFlex='40%'>
+      <mat-label>Adresse</mat-label>
+      <input matInput placeholder="Adresse" formControlName='Adresse'>
+      <mat-icon matSuffix [ngStyle]="{'color' :'green'}" *ngIf="formpersonnel.get('Adresse').valid">
+          done
+      </mat-icon>
+      <mat-icon matSuffix [ngStyle]="{'color' :'red'}"
+          *ngIf="formpersonnel.get('Adresse').invalid&&formpersonnel.get('Adresse').touched">info
+      </mat-icon>
+      <mat-error *ngIf="formpersonnel.get('Adresse').invalid&&formpersonnel.get('Adresse').touched">
+          Veuillez saisir l'adresse
+      </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline" fxFlex='40%'>
+    <mat-label>Téléphone</mat-label>
+    <input matInput placeholder="Téléphone" type='number' formControlName='Tel'>
+    <mat-icon matSuffix [ngStyle]="{'color' :'green'}" *ngIf="formpersonnel.get('Tel').valid">done
+    </mat-icon>
+    <mat-icon matSuffix [ngStyle]="{'color' :'red'}"
+        *ngIf="formpersonnel.get('Tel').invalid&& formpersonnel.get('Tel').touched">info</mat-icon>
+    <mat-error
+        *ngIf="formpersonnel.get('Tel').hasError('required')&& formpersonnel.get('Tel').touched">
+        Veuillez saisir le numéro de téléphone
+    </mat-error>
+    <mat-error
+        *ngIf="formpersonnel.get('Tel').hasError('pattern')&& formpersonnel.get('Tel').touched">
+        Le numéro de téléphone doit contenir 8 chiffres
+    </mat-error>
+</mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="center" fxLayoutGap="20px">
+    <mat-form-field appearance="outline" fxFlex='40%'>
+      <mat-label>Fax</mat-label>
+      <input matInput placeholder="Fax" type='number' formControlName='Fax'>
+      <mat-icon matSuffix [ngStyle]="{'color' :'green'}"
+          *ngIf="formpersonnel.get('Fax').touched&& formpersonnel.get('Fax').valid">done</mat-icon>
+      <mat-icon matSuffix [ngStyle]="{'color' :'red'}"
+          *ngIf="formpersonnel.get('Fax').invalid && formpersonnel.get('Fax').touched">info</mat-icon>
+
+      <mat-error
+          *ngIf="formpersonnel.get('Fax').hasError('pattern')&& formpersonnel.get('Fax').touched">
+          Le numéro de fax doit contenir 8 chiffres
+      </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline" fxFlex='40%'>
+    <mat-label>Email</mat-label>
+    <input matInput placeholder="Email" formControlName='Email'>
+    <mat-icon matSuffix [ngStyle]="{'color' :'green'}" *ngIf="formpersonnel.get('Email').valid">
+        done
+    </mat-icon>
+    <mat-icon matSuffix [ngStyle]="{'color' :'red'}"
+        *ngIf="formpersonnel.get('Email').invalid&& formpersonnel.get('Email').touched">info
+    </mat-icon>
+    <mat-error
+        *ngIf="formpersonnel.get('Email').hasError('required')&& formpersonnel.get('Email').touched">
+        Veuillez saisir une adresse email
+    </mat-error>
+    <mat-error
+        *ngIf="formpersonnel.get('Email').hasError('pattern')&& formpersonnel.get('Email').touched">
+        Veuillez saisir une adresse email valide
+    </mat-error>
+
+</mat-form-field>
+
+  </div>
+  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="center" fxLayoutGap="20px">
+    <mat-form-field appearance="outline" fxFlex='40%'>
+      <mat-label>Numero CNSS</mat-label>
+      <input matInput placeholder="Numero CNSS" formControlName='NumCNSS'>
+      <mat-icon matSuffix [ngStyle]="{'color' :'green'}"
+          *ngIf="formpersonnel.get('NumCNSS').touched&& formpersonnel.get('NumCNSS').valid">done
+      </mat-icon>
+      <mat-icon matSuffix [ngStyle]="{'color' :'red'}"
+          *ngIf="formpersonnel.get('NumCNSS').invalid&& formpersonnel.get('NumCNSS').touched">info
+      </mat-icon>
+      <mat-error
+          *ngIf="formpersonnel.get('NumCNSS').hasError('pattern')&& formpersonnel.get('NumCNSS').touched">
+          Veuillez saisir le Numero de CNSS
+      </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline" fxFlex='40%'>
+    <mat-label>Société</mat-label>
+    <mat-select formControlName="SocieteID">
+        <mat-option *ngFor="let societe of societesList" [value]="societe?.ID">{{societe?.Rs}}
+        </mat-option>
+    </mat-select>
+    <mat-icon matSuffix [ngStyle]="{'color' :'green'}" *ngIf="formpersonnel.get('SocieteID').valid">
+        done
+    </mat-icon>
+    <mat-icon matSuffix [ngStyle]="{'color' :'red'}"
+        *ngIf="formpersonnel.get('SocieteID').invalid&&formpersonnel.get('SocieteID').touched">info
+    </mat-icon>
+    <mat-error
+        *ngIf="formpersonnel.get('SocieteID').hasError('required')&&formpersonnel.get('SocieteID').touched">
+        Veuillez choisir votre société
+    </mat-error>
+
+</mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="center" fxLayoutGap="20px">
+    <mat-form-field appearance="outline" fxFlex='40%'>
+      <mat-label>Situation familialle</mat-label>
+      <mat-select formControlName="SituationFamilialle">
+          <mat-option value="célibataire">célibataire </mat-option>
+
+          <mat-option value="marié">marié </mat-option>
+          <mat-option value="divorcé">divorcé </mat-option>
+          <mat-option value="veuf">veuf </mat-option>
+
+      </mat-select>
+      <mat-icon matSuffix [ngStyle]="{'color' :'green'}"
+          *ngIf="formpersonnel.get('SituationFamilialle').valid">
+          done
+      </mat-icon>
+      <mat-icon matSuffix [ngStyle]="{'color' :'red'}"
+          *ngIf="formpersonnel.get('SituationFamilialle').invalid&&formpersonnel.get('SituationFamilialle').touched">
+          info
+      </mat-icon>
+      <mat-error
+          *ngIf="formpersonnel.get('SituationFamilialle').hasError('required')&&formpersonnel.get('SituationFamilialle').touched">
+          Veuillez choisir la situation familialle
+
+      </mat-error>
+
+  </mat-form-field>
+  <mat-form-field appearance="outline" fxFlex='40%'>
+    <mat-label>Nom d'ulisateur</mat-label>
+    <input matInput placeholder="Nom d'ulisateur" formControlName='Login'>
+    <mat-icon matSuffix [ngStyle]="{'color' :'green'}" *ngIf="formpersonnel.get('Login').valid">
+        done
+    </mat-icon>
+    <mat-icon matSuffix [ngStyle]="{'color' :'red'}"
+        *ngIf="formpersonnel.get('Login').invalid&& formpersonnel.get('Login').touched">info
+    </mat-icon>
+    <mat-error
+        *ngIf="formpersonnel.get('Login').hasError('required')&& formpersonnel.get('Login').touched">
+        Veuillez saisir votre nom d'ulisateur
+    </mat-error>
+    <mat-error
+        *ngIf="formpersonnel.get('Login').hasError('minlength')&& formpersonnel.get('Login').touched">
+        Veuillez saisir un nom d'ulisateur valide
+    </mat-error>
+</mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="center" fxLayoutGap="20px">
+    <mat-form-field appearance="outline" fxFlex='40%'>
+      <mat-label>Mot De Passe</mat-label>
+      <input matInput type="password" placeholder="Adresse" formControlName='MotDePasse'>
+      <mat-icon matSuffix [ngStyle]="{'color' :'green'}"
+          *ngIf="formpersonnel.get('MotDePasse').valid">
+          done</mat-icon>
+      <mat-icon matSuffix [ngStyle]="{'color' :'red'}"
+          *ngIf="formpersonnel.get('MotDePasse').invalid&&formpersonnel.get('MotDePasse').touched">
+          info
+      </mat-icon>
+      <mat-error
+          *ngIf="formpersonnel.get('MotDePasse').hasError('required')&&formpersonnel.get('MotDePasse').touched">
+          Veuillez saisir votre mot de passe
+      </mat-error>
+      <mat-error
+          *ngIf="formpersonnel.get('MotDePasse').hasError('minlength')&&formpersonnel.get('MotDePasse').touched">
+          Le mot de passe doit contenir au moins 6 caractères
+      </mat-error>
+  </mat-form-field>
+  <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center" fxFlex="40%" fxLayoutGap="-15px">
+
+
+  <div  *ngIf="this.loginservice.isadmin" >
+<section class="example-section" *ngFor="let role of roles">
+    <mat-checkbox class="example-margin" #checkbox [checked]="userID ===null ? role.Libelle===Userfunction : rolecheck(role)"
+        (change)='changerole(role,checkbox.checked)'>{{role?.Libelle}}</mat-checkbox>
+</section>
+  </div>
+</div>
+  </div>
+  <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="center" fxLayoutGap="10%">
+    <div >
+      <button type="button" mat-raised-button color="warn" *ngIf="imagePreviewpersonnel === null "
+          (click)="filePickerpersonnel.click()" style="margin-bottom: 3%;">               <mat-icon>backup</mat-icon>
+          Choisir photo
+      </button>
+      <button type="button" mat-raised-button color="warn" *ngIf="imagePreviewpersonnel !== null "
+          style="margin-bottom: 10px;" (click)="supprimerimgepersonnel()">              <mat-icon>remove</mat-icon>
+          Supprimer
+      </button>
+      <input type="file" #filePickerpersonnel (change)="imagepersonnel($event)"
+          style="visibility: hidden;">
+
+  </div>
+
+  <div ><mat-card>
+    <div class="image-preview" (mouseenter)='openimage(imagePreviewpersonnel)' (mouseleave)='closedialogimage()'
+                        *ngIf="imagePreviewpersonnel !== '' && imagePreviewpersonnel && formpersonnel.get('Image').valid">
+
+
+                        <img [src]="imagePreviewpersonnel">
+
+                    </div>
+</mat-card>
+
+  </div>
+  </div>
+<div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="center" fxLayoutGap="10%" >
+  <div>
+      <button type="button" mat-raised-button color="warn" *ngIf="imagePreviewcopierpermis === null "
+    (click)="filePickercopierpermis.click()">              <mat-icon>backup</mat-icon>
+    Copie permis
+</button>
+<button type="button"mat-raised-button color="warn" *ngIf="imagePreviewcopierpermis !== null "
+    style="margin-bottom: 10px;" (click)="supprimercopierpermier()">              <mat-icon>remove</mat-icon>
+    Supprimer
+</button>
+<input type="file" #filePickercopierpermis (change)="copierpermisimage($event)"
+    style="visibility: hidden;">
+  </div>
+<div>
+<mat-card>
+                    <div class="image-preview" (mouseover)='openimage(imagePreviewcopierpermis)'
+                    *ngIf="imagePreviewcopierpermis !== '' && imagePreviewcopierpermis && formpersonnel.get('CopierPermis').valid">
+
+
+                    <img [src]="imagePreviewcopierpermis">
+
+                </div></mat-card>
+</div>
+
+</div>
+<div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="center" fxLayoutGap="20px" style="margin-top: 2%;">
+  <button mat-raised-button type="submit" color="primary" [disabled]="formpersonnel.invalid" >
+    <mat-icon>save</mat-icon> Enregistrer
+</button>
+<button mat-raised-button type="reset" color='accent' >
+    <mat-icon>clear</mat-icon> Réinitialiser
+</button>
+</div>
+</mat-card-content>
+    </form>
+  </mat-card>
+</div>

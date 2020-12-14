@@ -1,0 +1,20 @@
+<mat-card>
+  <button mat-raised-button class="btn btn-success" (click)="openDialog()">Ajoute compte</button>
+  <table class="table-responsive">
+      <th>
+          compte ID
+      </th>
+      <th>
+          compte RIB
+      </th>
+      <th>banque</th>
+      <tr  *ngFor="let compte of comptes"  >
+          <td>{{compte?.ID}}</td>
+          <td >{{compte?.RIB}}</td>
+
+          <td >{{compte?.banque?.libelle}}
+              </td>
+      </tr>
+  </table>
+
+</mat-card>

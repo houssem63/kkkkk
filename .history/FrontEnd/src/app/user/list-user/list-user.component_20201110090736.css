@@ -1,0 +1,11 @@
+mat-card-title {
+  padding: 0;
+  margin: 0;
+margin-bottom: 2%;
+  }
+  table {
+    width: 100%;
+  }
+mat-card{
+  width: auto;
+}

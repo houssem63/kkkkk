@@ -1,0 +1,14 @@
+form {
+  margin:2%
+}
+mat-card{
+  margin-bottom:2% ;
+}
+table {
+  width: 100%;
+  border: 3px black solid;
+}
+
+td{
+  width: 13%;
+}

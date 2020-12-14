@@ -1,0 +1,65 @@
+
+form {
+  margin-top: 2%;
+
+
+  }
+
+
+  mat-card  {
+  padding: 0;
+  margin: 0;}
+  mat-card-content{
+    margin: 2%;
+  }
+  .btn{
+  padding: 0;
+  margin: 2%;
+  }
+  mat-card-title {
+  padding: 0;
+  margin: 0;
+
+  }
+
+
+img{
+
+    width: 200px;
+    height: 200px;
+
+}
+
+.example-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.example-margin {
+  margin: 0 10px;
+}
+
+
+
+.image-preview {
+  height: 6rem;
+  padding: auto;
+
+}
+.image-preview img{
+  height: 100%;
+  margin-top:2%
+}
+
+legend {
+  background-color: #000;
+  color: #fff;
+  padding: 3px 6px;
+}
+.output {
+  font: 1rem 'Fira Sans', sans-serif;
+}
+
+

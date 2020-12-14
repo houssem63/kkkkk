@@ -1,0 +1,102 @@
+ <mat-card>
+<mat-card-title>
+
+</mat-card-title>
+<mat-card-content *ngIf="banques.length ===0">
+  <h4>pas des utlisateurs </h4>
+</mat-card-content>
+<mat-card-content>
+<div  >
+  <div fxLayout="row"  fxLayoutAlign="end center" ngbDropdown  #myDrop="ngbDropdown">
+    <button mat-raised-button color='warn' mat-raised-button  matTooltip="Ajoute banque " id="dropdownConfig"
+    ngbDropdownToggle mat-button>
+    ajout nouvelle banque
+    </button>
+    <div ngbDropdownMenu aria-labelledby="dropdownConfig"  >
+      <form class="px-4 py-3" [formGroup]="formbanque" (submit)='save()'>
+        <div class="form-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Nom banque</mat-label>
+            <input matInput placeholder="Nom banque" formControlName='Libelle' >
+<mat-error>Nom de la banque est obligatoire </mat-error>
+          </mat-form-field>
+        </div>
+
+        <button type="submit" mat-raised-button color="primary" ><mat-icon>save</mat-icon>Enregistrer</button>
+        <button  mat-raised-button color="warn"  (click)='myDrop.close()'><mat-icon>cancel</mat-icon>fermer</button>
+
+      </form>
+
+
+    </div>
+</div>
+   <mat-form-field fxLayout="row">
+  <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filtre">
+</mat-form-field>
+
+</div>
+
+<div class="table-responsive">
+<table mat-table [dataSource]="dataSource" matSort  class="table"  >
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="Libelle">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header > Libelle   </th>
+    <td mat-cell *matCellDef="let element"> {{element.libelle}} </td>
+  </ng-container>
+
+
+
+
+
+    <ng-container matColumnDef="Actions">
+      <th mat-header-cell *matHeaderCellDef > Actions </th>
+      <td mat-cell *matCellDef="let element">
+<div ngbDropdown  #myDrop1="ngbDropdown">
+  <button mat-icon-button color='warn' matTooltip="Edit banque" ngbDropdownToggle (click)='patch(element.ID)'
+     >
+              <mat-icon>edit</mat-icon>
+          </button>
+          <div ngbDropdownMenu aria-labelledby="dropdownConfig"  >
+            <form class="px-4 py-3" [formGroup]="formbanque1" (submit)='save()' >
+              <div fxLayout='column' fxLayoutAlign='center center' >
+                <div  >
+                <mat-form-field appearance="outline" fxFlex="400px">
+                  <mat-label>Nom banque</mat-label>
+                  <input matInput placeholder="Nom banque" formControlName='Libelle1' >
+                  <mat-error>Nom de la banque est obligatoire </mat-error>
+                </mat-form-field>
+              </div>
+              <div>
+                <button type="submit" mat-raised-button color="primary" ><mat-icon>save</mat-icon>Enregistrer</button>
+                <button  mat-raised-button color="warn"  (click)='myDrop1.close()'><mat-icon>cancel</mat-icon>Fermer</button>
+              </div>
+
+              </div>
+
+
+
+
+            </form>
+            </div>
+</div>
+
+          <button mat-icon-button  color='accent' matTooltip="Supprimer banque "
+
+                      (click)="confirmDialog(element.ID)"      >
+                                  <mat-icon >delete</mat-icon>
+                                </button>
+
+      </td>
+    </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+</div>
+</mat-card-content>
+
+ </mat-card>

@@ -1,0 +1,286 @@
+<mat-card>
+
+
+  <mat-card-content fxLayout="column" fxLayoutAlign="center">
+
+
+
+  <mat-card style=" box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22); margin-bottom: 5%;"
+  fxFlex='100%'  >
+
+      <mat-card-title   fxLayout="row" fxLayoutAlign="center" style="margin-bottom: 5%;">Vos informations</mat-card-title>
+      <div   fxLayout="row" fxLayoutAlign="center center">
+       <mat-card-title >
+<div fxLayout="row" fxLayoutAlign="start" fxLayout.lt-md="column" >
+    <mat-card style="margin: 0; padding: 0;"  >
+
+       <img [src]='user.Image'>
+    <a><mat-icon (click)="profileimage.click()" class="top-right" matTooltip="Changer votre photo">
+      cloud_upload
+     </mat-icon></a>
+
+
+    </mat-card> </div>
+    <input type="file" #profileimage (change)="changeimage($event)"
+    style="visibility: hidden;">
+
+
+
+</mat-card-title>
+
+
+    <table class="table-responsive">
+      <tr *ngIf="user?.Nom !=null&&user?.Nom !==''">
+          <td>
+              <p ><strong>Nom:</strong></p>
+          </td>
+          <td>
+              <p>{{user?.Nom}}</p>
+          </td>
+      </tr>
+      <tr *ngIf="user?.Prenom !=null&&user?.Prenom !==''">
+          <td>
+              <p ><strong>Prenom:</strong></p>
+          </td>
+          <td>
+              <p>{{user?.Prenom}}</p>
+          </td>
+      </tr>
+      <tr *ngIf="user?.Cin !=null&&user?.Cin !==0">
+          <td>
+              <p><strong>Cin:</strong></p>
+          </td>
+          <td>
+              <p>{{user?.Cin}}</p>
+          </td>
+      </tr>
+      <tr *ngIf="user?.Rs !=null&&user?.Rs !==''">
+          <td>
+              <p ><strong>RS:</strong></p>
+          </td>
+          <td>
+              <p>{{user?.Rs}}</p>
+          </td>
+      </tr>
+      <tr *ngIf="user?.Adresse !=null&&user?.Adresse !==''">
+          <td>
+              <p ><strong>Adresse:</strong></p>
+          </td>
+          <td>
+              <p>{{user?.Adresse}}</p>
+          </td>
+
+      </tr>
+      <tr *ngIf="user?.Tel !=null&&user?.Tel !==0">
+          <td>
+              <p ><strong>Telephone:</strong> </p>
+          </td>
+          <td>
+              <p>{{user?.Tel}}</p>
+          </td>
+      </tr>
+      <tr *ngIf="user?.Fax !=null&&user?.Fax !==0">
+          <td>
+              <p ><strong>Fax:</strong> </p>
+
+          </td>
+          <td>
+              <p>{{user?.Fax}}</p>
+          </td>
+      </tr>
+      <tr *ngIf="user?.Email !=null&&user?.Email !==''">
+          <td>
+              <p ><strong>Email:</strong></p>
+          </td>
+          <td>
+              <p>{{user?.Email}}</p>
+          </td>
+      </tr>
+
+      <tr *ngIf="user?.Site !=null && user?.Site !=''">
+          <td>
+              <p ><strong>Site:</strong></p>
+
+          </td>
+          <td>
+              <p>{{user?.Site}}</p>
+          </td>
+      </tr>
+      <tr *ngIf="user?.DateDeNaissance !=null">
+          <td>
+              <p ><strong>Date de
+                      naissance:</strong></p>
+          </td>
+          <td>
+              <p>{{user?.DateDeNaissance | date:'dd/MM/yyyy'}}</p>
+          </td>
+      </tr>
+      <tr *ngIf="user?.Login !=null&&user?.Login !==''">
+          <td>
+              <p ><strong>Login:</strong></p>
+          </td>
+          <td>
+              <p>{{user?.Login}}</p>
+          </td>
+      </tr>
+      <tr *ngIf="user?.NomPC !=null &&user?.NomPC !=''">
+          <td>
+              <p ><strong>Personne a contacter nom:</strong></p>
+
+          </td>
+          <td>
+              <p>{{user?.NomPC}}</p>
+          </td>
+      </tr>
+      <tr *ngIf="user?.PrenomPC !=null &&user?.PrenomPC !=''">
+          <td>
+              <p ><strong>Personne a contacter
+                      prenom:</strong></p>
+          </td>
+          <td>
+              <p>{{user?.PrenomPC}}</p>
+          </td>
+      </tr>
+      <tr *ngIf="user?.TelPersonnelContact !=null&&user?.TelPersonnelContact !==0">
+          <td>
+              <p><strong>Personne a contacter
+                      numero:</strong></p>
+          </td>
+          <td>
+              <p>
+                  {{user?.TelPersonnelContact}}
+              </p>
+          </td>
+      </tr>
+      <tr *ngIf="user?.FaxPersonnelContact !=null&&user?.FaxPersonnelContact !==0">
+          <td>
+              <p ><strong>Personne a contacter
+                      fax:</strong></p>
+          </td>
+          <td>
+              <p>
+                  {{user?.FaxPersonnelContact}}
+              </p>
+          </td>
+      </tr>
+      <tr *ngIf="user?.AdresseEmailPersonnel !=null &&user?.AdresseEmailPersonnel !==''">
+          <td>
+              <p><strong>Personne a contacter
+                      email:</strong></p>
+          </td>
+          <td>
+              <p>{{user?.AdresseEmailPersonnel}}</p>
+          </td>
+      </tr>
+      <tr *ngIf="user?.NumCNSS !=null &&user?.NumCNSS !==0">
+          <td>
+              <p ><strong>NumCnss:</strong></p>
+
+          </td>
+          <td>
+              <p>
+                  {{user?.NumCNSS}}
+              </p>
+          </td>
+      </tr>
+      <tr *ngIf="user?.SituationFamilialle !=null&&user?.SituationFamilialle !==''">
+          <td>
+              <p >
+                  <strong>SituationFamilialle:</strong></p>
+          </td>
+          <td>
+              <p>
+                  {{user?.SituationFamilialle}}
+              </p>
+          </td>
+      </tr>
+      <tr *ngIf="user?.Regfiscale !=null && user?.Regfiscale !==''">
+          <td>
+              <p ><strong>Regfiscale:</strong></p>
+
+          </td>
+          <td>
+              <p>
+                  {{user?.Regfiscale}}
+              </p>
+          </td>
+      </tr>
+      <tr *ngIf="user?.Matfiscale !=null &&user?.Matfiscale !==''">
+          <td>
+              <p ><strong>Matfiscale:</strong></p>
+
+          </td>
+          <td>
+              <p>
+                  {{user?.Matfiscale}}
+              </p>
+          </td>
+      </tr>
+      <tr *ngIf="user?.Status !=null&&user?.Status !==''">
+          <td>
+              <p ><strong>Status:</strong></p>
+
+          </td>
+          <td>
+              <p>
+                  {{user?.Status ? 'active' :'bloque'}}
+              </p>
+          </td>
+      </tr>
+
+  </table>
+      </div>
+
+
+</mat-card>
+
+
+
+
+
+<mat-accordion>
+
+  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+          <mat-panel-title>
+              <mat-icon>{{panelOpenState ? 'remove': 'add' }}</mat-icon>
+              Change votre information
+          </mat-panel-title>
+
+      </mat-expansion-panel-header>
+
+
+<app-edit-user [IDuser]='IDuser'></app-edit-user>
+
+  </mat-expansion-panel>
+
+  <mat-expansion-panel (opened)="panelOpenState1 = true" (closed)="panelOpenState1 = false">
+      <mat-expansion-panel-header>
+          <mat-panel-title>
+              <mat-icon>{{panelOpenState1 ? 'remove': 'add' }}</mat-icon>
+              Change votre mot de passe
+          </mat-panel-title>
+  </mat-expansion-panel-header>
+
+<app-changepassword [IDuser]='IDuser'></app-changepassword>
+
+
+
+
+  </mat-expansion-panel>
+  <mat-expansion-panel (opened)="panelOpenState2 = true" (closed)="panelOpenState2 = false">
+    <mat-expansion-panel-header>
+        <mat-panel-title>
+            <mat-icon>{{panelOpenState2 ? 'remove': 'add' }}</mat-icon>
+            Liste des compte
+        </mat-panel-title>
+
+    </mat-expansion-panel-header>
+
+
+<app-compte-list [IDuser]='IDuser'></app-compte-list>
+
+</mat-expansion-panel>
+</mat-accordion>
+</mat-card-content>
+</mat-card>

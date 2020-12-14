@@ -1,0 +1,12 @@
+<p>accueil works!</p>
+<a mat-icon-button  color="accent" matTooltip="Supprimer personnel "
+class="btn btn-outline-secondary"
+mwlConfirmationPopover
+[popoverTitle]="'popoverTitle'"
+[popoverMessage]="'popoverMessage'"
+placement="rigth"
+(confirm)="confirmClicked = true"
+(cancel)="cancelClicked = true"
+>
+  <mat-icon >delete</mat-icon>
+</a>

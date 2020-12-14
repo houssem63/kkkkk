@@ -1,0 +1,10 @@
+mat-card{
+  margin: 2%;
+}
+.image-preview {
+  height: 3rem;
+
+}
+.image-preview img{
+  height: 100%;
+}

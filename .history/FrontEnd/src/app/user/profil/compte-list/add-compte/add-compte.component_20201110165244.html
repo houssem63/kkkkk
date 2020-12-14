@@ -1,0 +1,25 @@
+<mat-card [formGroup]='form'>
+  <mat-form-field appearance="fill" fxFlex="40%">
+      <mat-label>Banque</mat-label>
+      <select matNativeControl formControlName='banqueID' required >
+          <option *ngFor="let banque of banques" [value]="banque.ID">{{banque.libelle}} </option>
+
+
+      </select>
+      <mat-error *ngIf="form.get('banqueID').hasError('required')">
+          banque est <strong>obligatoire</strong>
+      </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+      <mat-label>RiB </mat-label>
+      <input matInput formControlName='RIB' required mask="00000-00000-00000000000-00">
+
+
+      <mat-error *ngIf="form.get('RIB').hasError('required')">
+          RIB est <strong>obligatoire</strong>
+      </mat-error>
+  </mat-form-field><br>
+  <button (click)="enregister()" class="btn badge-success">enregistre</button>
+  <button mat-button (click)="onNoClick()" class="btn btn-danger">fermer</button>
+
+  </mat-card>

@@ -1,0 +1,17 @@
+form {
+  margin:2%
+}
+mat-card{
+  margin-bottom:2% ;
+}
+table {
+  width: 100%;
+  border: 1 black solid;
+}
+
+
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+}

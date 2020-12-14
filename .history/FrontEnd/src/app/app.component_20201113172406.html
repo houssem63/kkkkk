@@ -1,0 +1,14 @@
+<app-header (sidenavToggle)="sidenav.toggle()"></app-header>
+
+<mat-sidenav-container autosize >
+  <mat-sidenav #sidenav [style.width.px]="width" mode='side' [opened]="this.loginService.IsAuth" role="navigation" style="overflow: hidden;">
+    <app-sidenav-list (closeSidenav)="sidenav.close()" (ReduireSaideNav)="require()" ></app-sidenav-list>
+  </mat-sidenav>
+  <mat-sidenav-content
+ >
+    <app-alert></app-alert>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

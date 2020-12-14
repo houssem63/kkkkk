@@ -1,0 +1,49 @@
+<mat-card>
+  <mat-card-title fxLayout fxLayoutAlign="center">
+    Détails utilisateur
+  </mat-card-title>
+  <form [formGroup]="form" (ngSubmit)="ajouteabonnemnt()">
+
+  <mat-card-content  fxLayout="column" fxLayoutAlign="center ">
+    <mat-form-field appearance="outline" fxFlex='50%'>
+      <mat-label>Date début</mat-label>
+      <input matInput placeholder="Date début" type="date" formControlName='DateDebut'>
+      <mat-icon matSuffix [ngStyle]="{'color' :'green'}" *ngIf="form.get('DateDebut').valid">done
+      </mat-icon>
+      <mat-icon matSuffix [ngStyle]="{'color' :'red'}"
+          *ngIf="form.get('DateDebut').invalid&& form.get('DateDebut').touched">info</mat-icon>
+      <mat-error *ngIf="form.get('DateDebut').invalid &&  form.get('DateDebut').touched">
+          Veuillez saisir la date de début
+      </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Duree</mat-label>
+
+    <mat-select  formControlName="Period" (selectionChange)='patchprix($event)'>
+      <mat-option *ngFor='let durre of dureeabonnement' [value]="durre.Valeur" >{{durre.Libelle}}</mat-option>
+    </mat-select>
+    <mat-icon matSuffix [ngStyle]="{'color' :'green'}" *ngIf="form.get('Period').valid">done
+    </mat-icon>
+    <mat-icon matSuffix [ngStyle]="{'color' :'red'}"
+        *ngIf="form.get('Period').invalid&&form.get('Period').touched">info</mat-icon>
+    <mat-error *ngIf="form.get('Period').invalid&&form.get('Period').touched">
+        Veuillez saisir la période
+    </mat-error>
+</mat-form-field>
+<mat-form-field appearance="outline" >
+  <mat-label>Montant</mat-label>
+  <input matInput type="number" formControlName='Montant' class="example-right-align" >
+
+  <span matSuffix>DT&nbsp;</span>
+
+  <mat-icon matSuffix [ngStyle]="{'color' :'green'}" *ngIf="form.get('Montant').valid">done
+  </mat-icon>
+  <mat-icon matSuffix [ngStyle]="{'color' :'red'}"
+      *ngIf="form.get('Montant').invalid&&form.get('Montant').touched">info</mat-icon>
+  <mat-error *ngIf="form.get('Montant').invalid&&form.get('Montant').touched">
+      Veuillez saisir le montant
+  </mat-error>
+</mat-form-field>
+  </mat-card-content>
+  </form>
+</mat-card>

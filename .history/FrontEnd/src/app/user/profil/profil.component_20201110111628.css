@@ -1,0 +1,15 @@
+img {
+
+    width: 200px;
+    height: auto;
+
+}
+mat-card {
+  margin: 2%;
+}
+
+.top-right {
+  position: absolute;
+  top: 9px;
+  right: 18px;
+}

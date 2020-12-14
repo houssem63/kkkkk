@@ -1,0 +1,38 @@
+<mat-nav-list>
+  <a mat-list-item routerLink="/utilisateur/inscription"   *ngIf="!this.loginservice.IsAuth"  fxHide.gt-xs>
+    <mat-icon>face</mat-icon>
+    <span class="nav-caption">Inscription</span>
+  </a>
+  <a mat-list-item routerLink="/connexion" (click)="onClose()" fxHide.gt-xs *ngIf="!this.loginservice.IsAuth">
+    <mat-icon>input</mat-icon>
+    <span class="nav-caption">Se connecter</span>
+  </a>
+  <a mat-list-item routerLink="/utilisateur/afficher_utilisateur" >
+    <mat-icon>person</mat-icon>
+    <span class="nav-caption">Utilisateur</span>
+  </a>
+  <a mat-list-item routerLink="/" (click)="onClose()">
+    <mat-icon>person</mat-icon>
+    <span class="nav-caption">Personnel</span>
+  </a>
+  <a mat-list-item routerLink="/" (click)="onClose()">
+    <mat-icon>person</mat-icon>
+    <span class="nav-caption">Client</span>
+  </a>
+  <a routerLink="/" mat-list-item (click)="onClose()">
+    <mat-icon>local_shipping</mat-icon>
+    <span class="nav-caption">Véhicule</span>
+  </a>
+
+    <a mat-list-item  (click)="onClose()"  *ngIf="this.loginservice.IsAuth" fxHide.gt-xs >
+      <mat-icon>eject</mat-icon>
+      <span class="nav-caption">Se deconnecter</span>
+
+  </a>
+
+    <a mat-list-item (click)='onreduire()'>
+      <mat-icon>arrow_right_alt</mat-icon>
+      <span class="nav-caption">Reduire</span>
+
+  </a>
+

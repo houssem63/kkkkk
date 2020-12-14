@@ -1,0 +1,39 @@
+<mat-card  fxFlex='100%'>
+  <mat-card-content >
+
+
+    <h4><span>Matricule :</span>  {{voiture?.Matricule |mask:'0000 SS 000'}}</h4>
+
+      <h4> <span>Marque :</span>  {{voiture?.Marque}}</h4>
+
+    <h4><span>Type :</span>   {{voiture?.Type}}</h4>
+
+      <h4><span>Categorie :</span> {{voiture?.Categorie}}</h4>
+
+    <h4><span> Compteur :</span> {{voiture?.Compteur}}</h4>
+
+      <h4> <span>Premier mise en circulation :</span> {{voiture?.DPMC |date:'dd/MM/yyyy'}}</h4>
+
+    <h4><span>Propritaire : </span>  {{voiture?.Propritaire}}</h4>
+<div fxLayout fxLayoutAlign.gt-md='start end' fxLayout.lt-md='column'   fxLayoutGap='30px'>
+  <div>
+    <span><h4>Copier Carte Grise :</h4></span>
+      <img class="image-preview" [src]="voiture?.CopierCarteGrise">
+  </div>
+    <div>
+     <span> <h4>Copier Contrat :</h4></span>
+
+   <img  class="image-preview" [src]="voiture?.CopierContrat" >
+    </div>
+
+
+</div>
+
+
+
+  </mat-card-content>
+  <mat-card-actions>
+  <button mat-raised-button type='button' (click)='onNoClick()' color='warn'><mat-icon>close</mat-icon>Fermer</button>
+   </mat-card-actions>
+
+</mat-card>

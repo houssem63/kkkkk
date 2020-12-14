@@ -1,0 +1,24 @@
+<mat-card>
+  <mat-card-title fxLayout="row" fxLayoutAlign="end center">
+     <button mat-raised-button color='primary' (click)="openDialog()"><mat-icon>add</mat-icon> Ajoute compte</button></mat-card-title>
+ <mat-dialog-content>
+    <table class="table-responsive" fxFlex='100%'>
+      <th>
+          compte ID
+      </th>
+      <th>
+          compte RIB
+      </th>
+      <th>banque</th>
+      <tr  *ngFor="let compte of comptes"  >
+          <td>{{compte?.ID}}</td>
+          <td >{{compte?.RIB}}</td>
+
+          <td >{{compte?.banque?.libelle}}
+              </td>
+      </tr>
+  </table>
+ </mat-dialog-content>
+
+
+</mat-card>

@@ -1,0 +1,23 @@
+form {
+  margin:2%
+}
+mat-card{
+  margin-bottom:2% ;
+}
+table {
+  width: 100%;
+
+}
+td{
+  width: 2px;
+}
+th{
+  text-align: center;
+}
+.image-preview {
+  height: 3rem;
+margin-bottom :2%
+}
+.image-preview img{
+  height: 100%;
+}

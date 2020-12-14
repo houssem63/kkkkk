@@ -1,0 +1,116 @@
+<mat-card>
+  <mat-card-title fxLayout="column" fxLayoutAlign="center center" style="margin-top: 2%">
+    Liste des utilisateurs
+  </mat-card-title>
+  <mat-card-title fxLayout fxLayout.lt-md="column" fxLayoutAlign='center' fxLayoutGap="20px">
+    <button mat-raised-button  color='primary'   matTooltip="Tous les utilisateurs" (click)="userfilter('tous')"
+    >
+    tous
+          </button>
+
+        <button mat-raised-button color='primary'    matTooltip="Liste des sociétés " (click)="userfilter('Société')"
+  >
+  Societe
+        </button>
+
+    <button mat-raised-button color='primary'   matTooltip="Liste des clients" (click)="userfilter('Client')"
+>
+  Client
+    </button>
+
+
+  <button mat-raised-button color='primary'   matTooltip="Liste des personnels " (click)="userfilter('Personnel')"
+  >
+  Personnel
+  </button>
+  </mat-card-title>
+  <mat-card-content *ngIf="users.length ===0">
+    <h4>pas des utlisateurs </h4>
+  </mat-card-content>
+<mat-card-content>
+  <div  >
+     <mat-form-field fxLayout="row">
+    <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filtre">
+  </mat-form-field>
+  <div fxLayout="row" fxLayoutAlign="end center">
+    <button mat-icon-button>
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+  </div>
+
+  <div class="table-responsive">
+  <table mat-table [dataSource]="dataSource" matSort  class="table"  >
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="Login">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header > Login   </th>
+      <td mat-cell *matCellDef="let element"> {{element.Login}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="Status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+      <td mat-cell *matCellDef="let element"> {{element.Status ? 'actif' :'bloque'  }} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="Role">
+      <th mat-header-cell *matHeaderCellDef > Role </th>
+      <td mat-cell *matCellDef="let element"> {{MaxRole(element?.roles)}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="mombredepuis">
+      <th mat-header-cell *matHeaderCellDef> mombre depuis </th>
+      <td mat-cell *matCellDef="let element"> {{element.mombredepuis }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="dernierconnection">
+        <th mat-header-cell *matHeaderCellDef> dernier connection </th>
+        <td mat-cell *matCellDef="let element"> {{element.dernierconnection }} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="finValidation" >
+        <th mat-header-cell *matHeaderCellDef> fin Validation</th>
+        <td mat-cell *matCellDef="let element" >
+            <p *ngIf="element.Function==='Société'">
+                {{element.abonnements[element.abonnements.length-1]?.DateFin |date:'dd/MM/yyy' }}</p>
+                <p *ngIf="element.Function==='Personnel' ||element.Function==='Client'">
+                    {{element.Societe.abonnements[element.Societe.abonnements.length-1]?.DateFin |date:'dd/MM/yyy' }}</p></td>
+      </ng-container>
+
+      <ng-container matColumnDef="Actions">
+        <th mat-header-cell *matHeaderCellDef > Actions </th>
+        <td mat-cell *matCellDef="let element">
+            <button mat-icon-button color="primary"(click)="openDialog(element.ID)"  matTooltip="Afficher personnel information"
+            >
+                <mat-icon>remove_red_eye</mat-icon>
+              </button>
+            <a mat-icon-button [routerLink]="['/utilisateur/edit',{id : element?.ID}]" color='warn' matTooltip="Edit personnel information"
+       >
+                <mat-icon>edit</mat-icon>
+            </a>
+            <button mat-icon-button  matTooltip="Supprimer personnel "
+            *ngIf="element?.ID !==1"
+                      (click)='confirmDialog(element.ID)'        >
+                                    <mat-icon >delete</mat-icon>
+                                  </button>
+              <button mat-icon-button  class="btn btn-secondary" matTooltip="Ajoute abonnement " *ngIf="userhasrole(element.roles,'Société')"
+              (click)="openDialogabonnement(element.ID)"
+             >
+                <mat-icon >add</mat-icon>
+              </button>
+        </td>
+      </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+</mat-card-content>
+  </mat-card>
+

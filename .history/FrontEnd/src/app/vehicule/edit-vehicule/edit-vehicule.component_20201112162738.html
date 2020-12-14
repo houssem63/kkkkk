@@ -1,0 +1,98 @@
+<form [formGroup]='form' (submit)="enregistre()">
+<mat-card>
+  <mat-card-title fxLayout fxLayoutAlign='center'>
+    {{title}}
+  </mat-card-title>
+  <mat-card-content>
+    <div  fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center" fxLayoutGap="20px">
+
+              <mat-form-field appearance="fill" fxFlex="40%">
+                <mat-label>Matricule</mat-label>
+                <input matInput placeholder="Matricule" formControlName="Matricule"  required>
+                <mat-error ></mat-error>
+              </mat-form-field>
+
+
+              <mat-form-field appearance="fill" fxFlex="40%">
+                  <mat-label>Marque</mat-label>
+                  <mat-select formControlName="Marque" required>
+                    <mat-option *ngFor="let marque of marques" [value]="marque.Libelle">{{marque.Libelle}}</mat-option>
+
+                  </mat-select>
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center" fxLayoutGap="20px">
+
+                      <mat-form-field appearance="fill" fxFlex="40%">
+                        <mat-label>Type</mat-label>
+                        <input matInput placeholder="Type"  formControlName="Type"  >
+                        <mat-error ></mat-error>
+                      </mat-form-field>
+
+              <mat-form-field appearance="fill" fxFlex="40%">
+                  <mat-label>Categorie</mat-label>
+                  <mat-select formControlName="Categorie"  >
+                    <mat-option value="primary">Primary</mat-option>
+                    <mat-option value="accent">Accent</mat-option>
+                    <mat-option value="warn">Warn</mat-option>
+                  </mat-select>
+                </mat-form-field>
+          </div>
+
+          <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center" fxLayoutGap="20px">
+            <mat-form-field appearance="fill" fxFlex="40%">
+              <mat-label>DPMC</mat-label>
+              <input type="date" matInput placeholder="DPMC" formControlName="DPMC"  >
+              <mat-error ></mat-error>
+            </mat-form-field>
+
+
+
+            <mat-form-field appearance="fill" fxFlex="40%">
+                <mat-label>Propritaire</mat-label>
+                <input  matInput placeholder="Propritaire" formControlName="Propritaire"  >
+                <mat-error ></mat-error>
+              </mat-form-field>
+          </div>
+
+
+          <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center" fxLayoutGap="20px">
+
+                <mat-form-field appearance="fill" fxFlex="40%">
+                    <mat-label>Compteur</mat-label>
+                    <input  matInput placeholder="Compteur" formControlName="Compteur">
+                    <mat-error ></mat-error>
+                  </mat-form-field>
+                  <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center" fxFlex='20%'>
+                      <div >
+                    <button (click)="cartegrisse.click()" type='button'>carte grisse</button>
+                    <input type="file" #cartegrisse (change)="onCategrissePicked($event)" style="visibility: hidden;">
+                      <div class="image-preview" *ngIf="cartegrissePreview !== '' && cartegrissePreview && form.get('CopierCarteGrise').valid">
+                          <img [src]="cartegrissePreview" [alt]="form.value.title">
+                      </div>
+                </div>
+                <div >
+                  <button (click)="CopierContrat.click()" type='button'>copier contrat</button>
+                  <input type="file" #CopierContrat (change)="oncopiercontratPicked($event)" style="visibility: hidden;">
+                    <div class="image-preview" *ngIf="copiercontratPreview !== '' && copiercontratPreview && form.get('CopierCarteGrise').valid">
+                        <img [src]="copiercontratPreview" [alt]="form.value.title">
+                    </div>
+              </div>
+                  </div>
+
+              </div>
+
+              <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="center" fxLayoutGap="20px" style="margin-top: 2%;">
+                <button mat-raised-button type="submit" color="primary" [disabled]="form.invalid" >
+                  <mat-icon>save</mat-icon> Enregistrer
+              </button>
+              <button mat-raised-button type="reset" color='accent' >
+                  <mat-icon>clear</mat-icon> Réinitialiser
+              </button>
+            </div>
+
+  </mat-card-content>
+
+</mat-card>
+</form>
+

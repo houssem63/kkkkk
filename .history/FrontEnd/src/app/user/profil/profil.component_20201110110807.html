@@ -1,0 +1,206 @@
+<mat-card>
+  <mat-card-title fxLayout fxLayoutAlign="center">Profile</mat-card-title>
+  <mat-card-content>
+    <div  fxLayout="row" fxLayoutAlign="start center" >
+      <mat-card>
+       <img [src]='user?.Image'>
+ <small class="bottom-right" class="changeimage">changer votre image</small>
+      </mat-card>
+
+
+    </div>
+<div  fxLayout="row" fxLayoutAlign="center center">
+  <table>
+    <tr *ngIf="user?.Nom !=null">
+        <td>
+            <h4 *ngIf="user?.Nom !=null"><strong>Nom:</strong></h4>
+        </td>
+        <td>
+            <h4>{{user?.Nom}}</h4>
+        </td>
+    </tr>
+    <tr *ngIf="user?.Prenom !=null">
+        <td>
+            <h4 *ngIf="user?.Prenom !=null"><strong>Prenom:</strong></h4>
+        </td>
+        <td>
+            <h4>{{user?.Prenom}}</h4>
+        </td>
+    </tr>
+    <tr *ngIf="user?.Cin !=null">
+        <td>
+            <h4 *ngIf="user?.Cin !=null"><strong>Cin:</strong></h4>
+        </td>
+        <td>
+            <h4>{{user?.Cin}}</h4>
+        </td>
+    </tr>
+    <tr *ngIf="user?.Rs !=null">
+        <td>
+            <h4 *ngIf="user?.Rs !=null"><strong>RS:</strong></h4>
+        </td>
+        <td>
+            <h4>{{user?.Rs}}</h4>
+        </td>
+    </tr>
+    <tr *ngIf="user?.Adresse !=null">
+        <td>
+            <h4 *ngIf="user?.Adresse !=null"><strong>Adresse:</strong></h4>
+        </td>
+        <td>
+            <h4>{{user?.Adresse}}</h4>
+        </td>
+
+    </tr>
+    <tr *ngIf="user?.Tel !=null">
+        <td>
+            <h4 *ngIf="user?.Tel !=null"><strong>Telephone:</strong> </h4>
+        </td>
+        <td>
+            <h4>{{user?.Tel}}</h4>
+        </td>
+    </tr>
+    <tr *ngIf="user?.Fax !=null">
+        <td>
+            <h4 *ngIf="user?.Fax !=null"><strong>Fax:</strong> </h4>
+
+        </td>
+        <td>
+            <h4>{{user?.Fax}}</h4>
+        </td>
+    </tr>
+    <tr *ngIf="user?.Email !=null">
+        <td>
+            <h4 *ngIf="user?.Email !=null"><strong>Email:</strong></h4>
+        </td>
+        <td>
+            <h4>{{user?.Email}}</h4>
+        </td>
+    </tr>
+
+    <tr *ngIf="user?.Site !=null">
+        <td>
+            <h4 *ngIf="user?.Site !=null"><strong>Site:</strong></h4>
+
+        </td>
+        <td>
+            <h4>{{user?.Site}}</h4>
+        </td>
+    </tr>
+    <tr *ngIf="user?.DateDeNaissance !=null">
+        <td>
+            <h4 *ngIf="user?.DateDeNaissance !=null"><strong>Date de
+                    naissance:</strong></h4>
+        </td>
+        <td>
+            <h4>{{user?.DateDeNaissance}}</h4>
+        </td>
+    </tr>
+    <tr *ngIf="user?.Login !=null">
+        <td>
+            <h4 *ngIf="user?.Login !=null"><strong>Login:</strong></h4>
+        </td>
+        <td>
+            <h4>{{user?.Login}}</h4>
+        </td>
+    </tr>
+    <tr *ngIf="user?.NomPC !=null">
+        <td>
+            <h4 *ngIf="user?.NomPC !=null"><strong>Personne a contacter nom:</strong></h4>
+
+        </td>
+        <td>
+            <h4>{{user?.NomPC}}</h4>
+        </td>
+    </tr>
+    <tr *ngIf="user?.PrenomPC !=null">
+        <td>
+            <h4 *ngIf="user?.PrenomPC !=null"><strong>Personne a contacter
+                    prenom:</strong></h4>
+        </td>
+        <td>
+            <h4>{{user?.PrenomPC}}</h4>
+        </td>
+    </tr>
+    <tr *ngIf="user?.TelPersonnelContact !=null">
+        <td>
+            <h4 *ngIf="user?.TelPersonnelContact !=null"><strong>Personne a contacter
+                    numero:</strong></h4>
+        </td>
+        <td>
+            <h4>
+                {{user?.TelPersonnelContact}}
+            </h4>
+        </td>
+    </tr>
+    <tr *ngIf="user?.FaxPersonnelContact !=null">
+        <td>
+            <h4 *ngIf="user?.FaxPersonnelContact !=null"><strong>Personne a contacter
+                    fax:</strong></h4>
+        </td>
+        <td>
+            <h4>
+                {{user?.FaxPersonnelContact}}
+            </h4>
+        </td>
+    </tr>
+    <tr *ngIf="user?.AdresseEmailPersonnel !=null">
+        <td>
+            <h4 *ngIf="user?.AdresseEmailPersonnel !=null"><strong>Personne a contacter
+                    email:</strong></h4>
+        </td>
+        <td>
+            <h4>{{user?.AdresseEmailPersonnel}}</h4>
+        </td>
+    </tr>
+    <tr *ngIf="user?.NumCNSS !=null">
+        <td>
+            <h4 *ngIf="user?.NumCNSS !=null"><strong>NumCnss:</strong></h4>
+
+        </td>
+        <td>
+            <h4>
+                {{user?.NumCNSS}}
+            </h4>
+        </td>
+    </tr>
+    <tr *ngIf="user?.SituationFamilialle !=null">
+        <td>
+            <h4 *ngIf="user?.SituationFamilialle !=null">
+                <strong>SituationFamilialle:</strong></h4>
+        </td>
+        <td>
+            <h4>
+                {{user?.SituationFamilialle}}
+            </h4>
+        </td>
+    </tr>
+    <tr *ngIf="user?.Regfiscale !=null">
+        <td>
+            <h4 *ngIf="user?.Regfiscale !=null"><strong>Regfiscale:</strong></h4>
+
+        </td>
+        <td>
+            <h4>
+                {{user?.Regfiscale}}
+            </h4>
+        </td>
+    </tr>
+    <tr *ngIf="user?.Matfiscale !=null">
+        <td>
+            <h4 *ngIf="user?.Matfiscale !=null"><strong>Matfiscale:</strong></h4>
+
+        </td>
+        <td>
+            <h4>
+                {{user?.Matfiscale}}
+            </h4>
+        </td>
+    </tr>
+</table>
+
+
+
+</div>
+  </mat-card-content>
+</mat-card>

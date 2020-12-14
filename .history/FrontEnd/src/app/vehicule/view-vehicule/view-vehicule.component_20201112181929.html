@@ -1,0 +1,50 @@
+<mat-card>
+  <div mat-dialog-content>
+
+<div class="row" >
+  <div class="col-6">
+    <h4><span>Matricule :</span>  {{voiture?.Matricule}}</h4>
+  </div>
+  <div class="col-6">
+      <h4> <span>Marque :</span>  {{voiture?.Marque}}</h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col-6">
+    <h4><span>Type :</span>   {{voiture?.Type}}</h4>
+  </div>
+  <div class="col-6">
+      <h4><span>Categorie :</span> {{voiture?.Categorie}}</h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col-6">
+    <h4><span> Compteur :</span> {{voiture?.Compteur}}</h4>
+  </div>
+  <div class="col-6">
+      <h4> <span>DPMC :</span> {{voiture?.DPMC}}</h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col-6">
+    <h4><span>Propritaire : </span>  {{voiture?.Propritaire}}</h4>
+  </div>
+  <div class="col-3">
+    <span><h4>Copier Carte Grise :</h4></span>
+<img class="image-preview" [src]="voiture?.CopierCarteGrise">
+
+</div>
+<div class="col-3">
+<span> <h4>Copier Contrat :</h4></span>
+
+  <img  class="image-preview"[src]="voiture?.CopierContrat" >
+
+  </div>
+</div>
+</div>
+
+
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">fermer</button>
+</div>
+</mat-card>

@@ -1,0 +1,95 @@
+<form [formGroup]="form" (ngSubmit)='enregistre()' fxLayout='row' fxLayoutAlign='start' fxLayoutGap='20px'>
+
+
+
+
+
+
+
+
+  <mat-card fxFlex='50%' >
+    <mat-card-title>
+      <button class="btn btn-success" (click)="active = !active" *ngIf="!active">ajoute</button>
+
+    </mat-card-title>
+    <table class="table">
+      <th>Libelle</th>
+      <th>Adresse</th>
+      <th>Telephone</th>
+      <th>Site</th>
+      <th>actions</th>
+      <tr *ngFor="let pre of prestataires">
+        <td>
+          {{pre?.Libelle}}
+        </td>
+        <td>{{pre?.Adresse}}</td>
+        <td>{{pre?.Tel}}</td>
+        <td>{{pre?.Site}}</td>
+        <td>
+          <button mat-icon-button matTooltip="edit" (click)="edit(pre?.ID)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button (click)=delete(pre?.ID) matTooltip="supprime">
+            <mat-icon>delete</mat-icon>
+          </button>
+
+        </td>
+      </tr>
+    </table>
+  </mat-card>
+
+
+  <mat-card *ngIf="active" fxFlex='50%'>
+<mat-card-content fxLayout="row" fxLayoutAlign='center'>
+<div>
+      <mat-form-field appearance="fill">
+      <mat-label>Libelle</mat-label>
+      <input matInput placeholder="Libelle" formControlName="Libelle" required>
+      <mat-error *ngIf="form.get('Libelle').hasError('required')">
+        Libelle est <strong>obligatoire</strong>
+      </mat-error>
+    </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Adresse</mat-label>
+        <input matInput placeholder="Adresse" formControlName="Adresse" required>
+        <mat-error *ngIf="form.get('Adresse').hasError('required')">
+          Adresse est <strong>obligatoire</strong>
+        </mat-error>
+      </mat-form-field>
+</div>
+<div>
+    <mat-form-field appearance="fill">
+        <mat-label>Telephone </mat-label>
+        <input maxlength="number" minlength="number" formControlName="Tel" minlength=8 maxlength=8 matInput required>
+        <mat-error *ngIf="form.get('Tel').hasError('required')">
+          Telephone est <strong>obligatoire</strong>
+        </mat-error>
+        <mat-error *ngIf="form.get('Tel').hasError('minlength')">
+          Le Telephone doit comporter au moins 8 caractères.
+        </mat-error>
+        <mat-error *ngIf="form.get('Tel').hasError('pattern')">
+          Le Telephone doit content que des number.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Site</mat-label>
+        <input matInput placeholder="Site" formControlName="Site">
+      </mat-form-field>
+</div>
+
+
+    </mat-card-content>
+<mat-card-actions>
+      <button mat-button matTooltip="enregister"  color='primary' type="submit">
+        <mat-icon>save</mat-icon>
+        Enregistrer
+      </button>
+      <button mat-button  color='warn' (click)="active = !active" *ngIf="active">
+        <mat-icon>cancel</mat-icon>
+        Annuler
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

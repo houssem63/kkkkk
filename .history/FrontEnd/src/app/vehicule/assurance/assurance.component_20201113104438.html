@@ -1,0 +1,242 @@
+<form [formGroup]="form" (submit)="enregistre()">
+ <mat-card fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center" fxLayoutGap="20px">
+ <h3>Matricule :{{voiture?.Matricule |mask :'0000 SS 000'}}</h3>
+  <h3>Marque :{{voiture?.Marque}}</h3>
+ </mat-card>
+  <mat-card >
+    <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center" fxLayoutGap="20px">
+      <mat-form-field appearance="fill" fxFlex='40%'>
+        <mat-label>Prestataire</mat-label>
+        <select matNativeControl formControlName="prestataireassuranceID" required>
+          <option *ngFor="let pre of prestataires" [value]="pre?.ID">{{pre?.Libelle}} </option>
+
+
+        </select>
+        <mat-error *ngIf="form.get('prestataireassuranceID').hasError('required')">
+          Prestataire est <strong>obligatoire</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" fxFlex='40%'>
+        <mat-label>DateOperation </mat-label>
+        <input matInput type="date" formControlName="DateOperation" required>
+        <mat-error *ngIf="form.get('DateOperation').hasError('required')">
+          Date Operation est <strong>obligatoire</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center" fxLayoutGap="20px">
+
+
+      <mat-form-field appearance="fill" fxFlex='40%'>
+        <mat-label>Date Debut Validite </mat-label>
+        <input matInput type="date" formControlName="DateDebutValidite" required>
+        <mat-error *ngIf="form.get('DateDebutValidite').hasError('required')">
+          Date Debut Validite est <strong>obligatoire</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" fxFlex='40%'>
+        <mat-label>Date Fin Validite</mat-label>
+        <input matInput type="date" formControlName="DateFinValidite" required>
+        <mat-error *ngIf="form.get('DateFinValidite').hasError('required')">
+          Date Fin Validite est <strong>obligatoire</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center" fxLayoutGap="20px">
+
+
+      <mat-form-field appearance="fill" fxFlex='40%'>
+        <mat-label>Amount</mat-label>
+        <input matInput type="number" class="example-right-align" formControlName="Montant">
+        <span matPrefix>DT&nbsp;</span>
+        <span matSuffix>.00</span>
+        <mat-error *ngIf="form.get('Montant').hasError('required')">Montant est obligatoire</mat-error>
+
+      </mat-form-field>
+      <div fxFlex='40%'>
+         <button type="button" class="btn btn-warning" style="margin-bottom: 10px;" (click)="filePicker.click()"
+        *ngIf='imagePreview ==null'>Copier de assurance
+      </button>
+      <button type="button" class="btn btn-warning" style="margin-bottom: 10px;" (click)="supprimerimage()"
+        *ngIf='imagePreview !=null'>Supprimer Copier de assurance</button>
+
+      <input type="file" #filePicker (change)="onImagePicked($event)" style="visibility: hidden;">
+      <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview && form.get('CopierAssurance').valid">
+        <img [src]="imagePreview" [alt]="form.value.title"></div>
+      </div>
+
+    </div>
+
+<div *ngIf='t.controls.length !==0' class="table-responsive" >
+<table mat-table >
+
+  <th></th>
+  <th>MP</th>
+  <th>Montant</th>
+  <th>Referance</th>
+  <th>Echeance</th>
+  <th>Banque</th>
+  <th>porteur</th>
+  <th>Date operation</th>
+  <tr *ngFor="let regle of t.controls;let i = index" [formGroup]='regle' >
+
+<td (click)='removerow(i)'><mat-icon>remove</mat-icon></td>
+ <td >
+  <mat-form-field appearance="fill">
+    <mat-label>ModePaiement</mat-label>
+    <input matInput type="number" class="example-right-align" formControlName="ModePaiement">
+    <span matSuffix>DT&nbsp;</span>
+
+
+  </mat-form-field>
+    </td>
+
+    <td>
+      <mat-form-field appearance="fill" >
+        <mat-label>ModePaiement</mat-label>
+        <input matInput type="number" class="example-right-align" formControlName="Montant">
+
+
+      </mat-form-field>
+        </td>
+        <td>
+          <mat-form-field appearance="fill" >
+            <mat-label>ModePaiement</mat-label>
+            <input matInput type="number" class="example-right-align" formControlName="Referance">
+
+
+          </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field appearance="fill" >
+                <mat-label>ModePaiement</mat-label>
+                <input matInput type="number" class="example-right-align" formControlName="Echeance">
+
+
+              </mat-form-field>
+                </td>
+                <td>
+                  <mat-form-field appearance="fill" >
+                    <mat-label>ModePaiement</mat-label>
+                    <input matInput type="number" class="example-right-align" formControlName="Banque">
+
+
+                  </mat-form-field>
+                    </td>
+                    <td>
+                      <mat-form-field appearance="fill" >
+                        <mat-label>ModePaiement</mat-label>
+                        <input matInput type="number" class="example-right-align" formControlName="Porteur">
+
+
+                      </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="fill" >
+                            <mat-label>ModePaiement</mat-label>
+                            <input matInput type="number" class="example-right-align" formControlName="DateOperation">
+
+
+                          </mat-form-field>
+                            </td>
+
+
+  </tr>
+
+
+
+
+
+</table>
+
+
+</div>
+
+    <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="center" fxLayoutGap="20px">
+
+
+
+
+
+
+
+      <button mat-raised-button color='warn' type='button'  (click)="reglement()">
+        <mat-icon>add</mat-icon>Ajout reglement
+      </button>
+      <button mat-raised-button color='primary'  type='submit'>
+        <mat-icon>save</mat-icon> Enregistre
+      </button>
+      <button mat-raised-button color='warn'  type='reset'>
+        <mat-icon>close</mat-icon> Renistialiser
+      </button>
+
+</div>
+
+  </mat-card>
+  <mat-card>
+    <mat-card *ngIf="assurances.length ===0" style="margin-top: 4%;" class="container-fluid">
+      <h4>pas des assurance encore</h4>
+    </mat-card>
+    <div *ngIf="assurances.length !=0">
+      <mat-form-field>
+        <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+      <div class="table-responsive">
+        <table mat-table [dataSource]="dataSource" matSort class="table">
+
+          <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="Prestataire">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Prestataire </th>
+            <td mat-cell *matCellDef="let element"> {{element.prestataireassurance?.Libelle}} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="DateOperation">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> DateOperation </th>
+            <td mat-cell *matCellDef="let element"> {{element.DateOperation |date}} </td>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="DateDebutValidite">
+            <th mat-header-cell *matHeaderCellDef> DateDebutValidite </th>
+            <td mat-cell *matCellDef="let element"> {{element.DateDebutValidite |date}} </td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="DateFinValidite">
+            <th mat-header-cell *matHeaderCellDef> DateFinValidite </th>
+            <td mat-cell *matCellDef="let element"> {{element.DateFinValidite |date}} </td>
+          </ng-container>
+
+
+
+
+
+          <ng-container matColumnDef="Actions">
+            <th mat-header-cell *matHeaderCellDef> Actions </th>
+            <td mat-cell *matCellDef="let element">
+              <button mat-icon-button class="btn btn-primary" (click)="openDialog(element.ID)"
+                matTooltip="Afficher personnel information">
+                <mat-icon>remove_red_eye</mat-icon>
+              </button>
+              <a mat-icon-button class="btn btn-warning" matTooltip="Edit personnel information"
+                aria-label="Example icon button with a home icon">
+                <mat-icon>edit</mat-icon>
+              </a>
+              <button mat-icon-button class="btn btn-danger" matTooltip="Supprimer personnel ">
+                <mat-icon>delete</mat-icon>
+              </button>
+
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+    </div>
+  </mat-card>
+</form>

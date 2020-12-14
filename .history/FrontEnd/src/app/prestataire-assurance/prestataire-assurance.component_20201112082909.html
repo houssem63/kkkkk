@@ -1,0 +1,117 @@
+<div class="container" [formGroup]="form" (ngSubmit)='enregistre()'>
+  <div class="row">
+      <div class="col-12">
+          <h4 class="alert " *ngIf="msg !=null" [ngClass]="{'alert-success':ok,'alert-danger':ok==false}">{{msg}}</h4>
+
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-12">
+          <button class="btn btn-success" (click)="active = !active" *ngIf="!active">ajoute</button>
+
+      </div>
+  </div>
+  <div class="row">
+
+      <div class="col-sm-12 col-md-12 col-lg-6">
+          <mat-card>
+              <table  class="table">
+                  <th>Libelle</th>
+                  <th>Adresse</th>
+                  <th>Telephone</th>
+                  <th>Site</th>
+                  <th>actions</th>
+                  <tr *ngFor="let pre of prestataires">
+                      <td>
+                          {{pre?.Libelle}}
+                      </td>
+                      <td>{{pre?.Adresse}}</td>
+                      <td>{{pre?.Tel}}</td>
+                      <td>{{pre?.Site}}</td>
+                      <td>
+                          <button mat-icon-button class="btn btn-warning" matTooltip="edit" (click)="edit(pre?.ID)">
+                              <mat-icon>edit</mat-icon>
+                          </button>
+                          <button mat-icon-button class="btn btn-danger" (click)=delete(pre?.ID) matTooltip="supprime">
+                              <mat-icon>delete</mat-icon>
+                          </button>
+
+                      </td>
+                  </tr>
+              </table>
+          </mat-card>
+      </div>
+      <div class="col-sm-12 col-md-12 col-lg-6" *ngIf="active">
+          <mat-card>
+              <div class="row">
+
+                  <div class="col-md-6 col-sm-12 col-lg-6">
+                      <div class="example-container">
+                          <mat-form-field appearance="fill">
+                              <mat-label>Libelle</mat-label>
+                              <input matInput placeholder="Libelle" formControlName="Libelle" required>
+                              <mat-error *ngIf="form.get('Libelle').hasError('required')">
+                                  Libelle est <strong>obligatoire</strong>
+                              </mat-error>
+                          </mat-form-field>
+                      </div>
+                  </div>
+                  <div class="col-md-6 col-sm-12 col-lg-6">
+                      <div class="example-container">
+                          <mat-form-field appearance="fill">
+                              <mat-label>Adresse</mat-label>
+                              <input matInput placeholder="Adresse" formControlName="Adresse" required>
+                              <mat-error *ngIf="form.get('Adresse').hasError('required')">
+                                  Adresse est <strong>obligatoire</strong>
+                              </mat-error>
+                          </mat-form-field>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-6 col-sm-12 col-lg-6">
+                      <div class="example-container">
+                          <mat-form-field appearance="fill">
+                              <mat-label>Telephone </mat-label>
+                              <input maxlength="number" minlength="number" formControlName="Tel" minlength=8
+                                  maxlength=8 matInput required>
+                              <mat-error *ngIf="form.get('Tel').hasError('required')">
+                                  Telephone est <strong>obligatoire</strong>
+                              </mat-error>
+                              <mat-error *ngIf="form.get('Tel').hasError('minlength')">
+                                  Le Telephone doit comporter au moins 8 caractères.
+                              </mat-error>
+                              <mat-error *ngIf="form.get('Tel').hasError('pattern')">
+                                  Le Telephone doit content que des number.
+                              </mat-error>
+                          </mat-form-field>
+                      </div>
+                  </div>
+                  <div class="col-md-6 col-sm-12 col-lg-6">
+                      <div class="example-container">
+                          <mat-form-field appearance="fill">
+                              <mat-label>Site</mat-label>
+                              <input matInput placeholder="Site" formControlName="Site">
+                          </mat-form-field>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-12">
+                      <button mat-button class="btn btn-success" matTooltip="enregister" (click)="enregistre()">
+                          <mat-icon>save</mat-icon>
+                          enregistre
+                      </button>
+                      <button mat-button class="btn btn-danger" (click)="active = !active" *ngIf="active">
+                          <mat-icon>cancel</mat-icon>
+                          annuler
+                      </button>
+                  </div>
+              </div>
+          </mat-card>
+      </div>
+  </div>
+
+
+</div>

@@ -1,0 +1,57 @@
+<mat-nav-list>
+  <a mat-list-item routerLink="/utilisateur/inscription"   *ngIf="!this.loginservice.IsAuth"  fxHide.gt-xs>
+    <mat-icon>face</mat-icon>
+    <span class="nav-caption">Inscription</span>
+  </a>
+  <a mat-list-item routerLink="/connexion" (click)="onClose()" fxHide.gt-xs *ngIf="!this.loginservice.IsAuth">
+    <mat-icon>input</mat-icon>
+    <span class="nav-caption">Se connecter</span>
+  </a>
+  <a mat-list-item routerLink="/utilisateur/liste_utilisateur" *ngIf="this.loginservice.IsAuth&&this.loginservice?.hasRole('Administrateur')" >
+    <mat-icon>person</mat-icon>
+    <span class="nav-caption">Utilisateur</span>
+  </a>
+  <a mat-list-item routerLink="/utilisateur/personnel" *ngIf="this.loginservice.IsAuth&&this.loginservice?.hasRole('Société')">
+    <mat-icon>person</mat-icon>
+    <span class="nav-caption">Personnel</span>
+  </a>
+  <a mat-list-item routerLink="/utilisateur/client" *ngIf="this.loginservice.IsAuth&&this.loginservice?.hasRole('Société')" >
+    <mat-icon>person</mat-icon>
+    <span class="nav-caption">Client</span>
+  </a>
+  <a routerLink="/vehicule/liste_vehicule" mat-list-item  *ngIf="this.loginservice.IsAuth&&this.loginservice?.hasRole('Société')">
+    <mat-icon>local_shipping</mat-icon>
+    <span class="nav-caption">Véhicule</span>
+  </a>
+  <a routerLink="/liste_banque" mat-list-item *ngIf="this.loginservice.IsAuth&&this.loginservice?.hasRole('Administrateur')" >
+    <mat-icon>attach_money</mat-icon>
+    <span class="nav-caption">Banque</span>
+  </a>
+  <a routerLink="/prestataire_assurance" mat-list-item  *ngIf="this.loginservice.IsAuth&&this.loginservice?.hasRole('Administrateur')">
+    <mat-icon>local_shipping</mat-icon>
+    <span class="nav-caption">Prestataire assurance</span>
+  </a>
+  <a routerLink="/entretien" mat-list-item *ngIf="this.loginservice.IsAuth&&this.loginservice?.hasRole('Administrateur')" >
+    <mat-icon>construction</mat-icon>
+    <span class="nav-caption">Entretien</span>
+  </a>
+  <a routerLink="/mode_paiement" mat-list-item *ngIf="this.loginservice.IsAuth&&this.loginservice?.hasRole('Administrateur')" >
+    <mat-icon>construction</mat-icon>
+    <span class="nav-caption">Mode paiment</span>
+  </a>
+    <a mat-list-item  (click)="onClose()"  *ngIf="this.loginservice.IsAuth" fxHide.gt-xs >
+      <mat-icon>eject</mat-icon>
+      <span class="nav-caption">Se deconnecter</span>
+
+  </a>
+<div  fxLayout="row" fxLayoutAlign="start end" >
+    <a mat-list-item (click)='onreduire()'  fxLayout="row" fxLayoutAlign="start end" >
+      <mat-icon>{{flechdirection}}</mat-icon>
+      <span class="nav-caption">Reduire</span></a>
+</div>
+
+
+
+
+
+

@@ -1,0 +1,25 @@
+<mat-toolbar color="primary">
+  <div >
+    <button mat-icon-button (click)="onToggleSidenav()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+  <div>
+    <a routerLink="/">LOGO</a>
+  </div>
+  <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+    <ul fxLayout fxLayoutGap="10px" class="navigation-items">
+     <li  *ngIf='!loginService.IsAuth'>
+        <a routerLink="/connexion"  routerLinkActive="active">Se connecter</a>
+      </li>
+       <li  *ngIf='!loginService.IsAuth'>
+        <a routerLink="/utilisateur/inscription" routerLinkActive="active">Inscription</a>
+      </li>
+
+
+      <li  *ngIf='loginService.IsAuth'>
+        <a (click)="logout()" >Se deconnecter</a>
+      </li>
+    </ul>
+  </div>
+</mat-toolbar>

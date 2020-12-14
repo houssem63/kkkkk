@@ -1,0 +1,6 @@
+mat-card{
+  margin :2%
+}
+.dropdown-toggle::after {
+  display:none;
+}

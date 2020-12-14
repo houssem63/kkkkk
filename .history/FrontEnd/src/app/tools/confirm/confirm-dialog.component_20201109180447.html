@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>
+  {{confirmationDialog.Title}}
+</h1>
+
+<div mat-dialog-content>
+  <p>{{confirmationDialog.Message}}</p>
+</div>
+
+<div mat-dialog-actions>
+  <button mat-raised-button color="warn" (click)="onConfirm()">
+    <mat-icon>delete</mat-icon>
+    {{confirmationDialog.Confirmation}}</button>
+
+  <button mat-raised-button (click)="onDismiss()" color="primary" >
+    <mat-icon>cancel</mat-icon>
+    {{confirmationDialog.Annuler}}</button>
+</div>
